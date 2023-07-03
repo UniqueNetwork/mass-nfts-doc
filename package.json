@@ -1,0 +1,12 @@
+{
+  "name": "nft-minting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "TODO"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
