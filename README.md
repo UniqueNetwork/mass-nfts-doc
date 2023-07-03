@@ -34,6 +34,8 @@ Metadata refers to basic information that provides a description of our NFT or c
 
 > ✏️ в `config.js`: заполните поля `collectionName`, `collectionDescription` и `tokenPrefix`.
 
+<TODO какие еще есть свойства о которых надо рассказать. нестинг?>
+
 After creation of collection metadata file we need to create metadata of our NFT's
 
 ### Установите метадату для NFT 
@@ -90,3 +92,9 @@ If you have never worked with Substrate addresses and seeds before, исопль
 > ✏️ в `config.js`: заполните поле `ownerSeed`. 
 > 
 > ❗️ Don’t commit your secrets such as ownerSeed, to version control! We added `config.js` under `.gitignore` с этой целью
+
+## Создайте коллекцию и токены
+
+### Step 1: Загрузите изображения на IPFS
+
+<TODO что такое ipfs>

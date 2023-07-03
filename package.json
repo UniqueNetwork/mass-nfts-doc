@@ -8,5 +8,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@unique-nft/accounts": "^0.3.6",
+    "@unique-nft/sdk": "^0.2.17",
+    "adm-zip": "^0.5.10",
+    "csv-reader": "^1.0.12"
+  }
 }
