@@ -153,7 +153,7 @@ node 3-create-nfts.js
 🚀 Creating NFTs... done!
 Token Ids: 1, 2, 3, 4, 5
 
-🔗 
+🔗 You can find it here: https://uniquescan.io/opal/collections/1877
 ```
 
-Your collection create
+Your collection successfully created!
