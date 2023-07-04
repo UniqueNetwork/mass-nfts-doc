@@ -3,18 +3,14 @@ const path = require('path');
 const readCSV = require('./read-csv');
 const config = require('../config');
 
-// Creates a zip archive with `config.desiredNumber` prefixed images and cover.png
-// Images should be stored in config.outputFolder directory (./data by default)
+// Creates a zip archive with `images.length` prefixed images and cover.png
+// Images should be stored in config.dataDir directory (`data` by default)
 
 let images;
 
 async function createZipArchive() {
   console.log('📦 adding images to a zip archive...')
   images = await readCSV();
-  if(images.length < config.desiredNumber) {
-    console.log('❌ Error: Total NFTs in .csv less than config.desiredNumber');
-    process.exit(1);
-  }
 
   try {
     // path where to store zip
@@ -33,7 +29,7 @@ async function createZipArchive() {
         ));
     }
 
-    const indexes = Array.from({ length: config.desiredNumber },(_, i) => i+1);
+    const indexes = Array.from({ length: images.length },(_, i) => i+1);
     indexes.forEach((i) => {
         const tokenImg = images[i-1];
         if (tokenImg) {

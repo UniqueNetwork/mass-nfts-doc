@@ -4,7 +4,6 @@ const config = {
 
     imagePrefix: 'cosmic_', // It is required that all NFT image names begin with prefix
     coverFileName: 'cover.png', // Your cover should have this name. Save it in ./data folder
-    desiredNumber: 10, // amount of NFTs to mint
 
     // Set desired collection attributes
     collection: {

@@ -12,109 +12,147 @@ By the completion of this tutorial, you will have a clear understanding of how t
 
 ## ⚙️ Setup environment
 
-To get started, we'll need node.js and git installed on your computer. If you haven't worked with git, node, and npm before, we recommend reading our [brief guide](./setup.md) to properly configure your environment.
+To get started, we'll need node.js, git, and Visual Studio Code installed on your computer. If you haven't worked with git, node, and npm before, we recommend reading our [brief guide](./setup.md) to properly configure your environment.
 
+### Download the project.
 
-Download the project and install its dependencies. Open your terminal, copy and execute the following command:
+You may do it in two ways.
+
+1. Using terminal. Open your terminal, `cd` to desired directory, and execute the following command:
 <!-- <TODO fix link> -->
 ```sh
 git clone -b add-scripts git@github.com:Maksandre/mass-nfts.git
-cd ./mass-nfts
+```
+
+<!-- TODO fix link -->
+2. Manually. Go to [Github repository](https://github.com/Maksandre/mass-nfts/tree/add-scripts) and download the project by clicking `Code - Download ZIP`
+
+<image src="./docs/download.png"></image>
+
+After downloading the project, open it in Visual Studio Code. Click on `"File"` and select `"Open Folder"`. Then, choose the folder where the project was downloaded.
+
+### Install dependencies
+
+In Visual Studio Code, access the built-in terminal by clicking on `"Terminal"` and then selecting `"New Terminal"`. Execute the following command:
+
+```
 npm install
 ```
 
-Keep your terminal open, as you will need it for the next steps in this guide.
+<image src="./docs/terminal.png"></image>
 
-Создайте в корне проекта файл `config.js`, скопируйте в него содержимое `config.example.js`
+Lastly, create a file named `config.js` in the root directory of your project and copy the contents from the `config.example.js` file into it. 
 
-## 🖼 Подготовьте изображения
-Положите свои изображения в папку `./data`. Изображения должны состоять из "prefix", и порядкого номера, который определит номер токена в коллекции. Для этого туториала префиксом токена будет `cosmic_`. Таким образом, `cosmic_1.png` будет первым токеном в коллекции, `cosmic_2.png`  – вторым и т.д.
+Congratulations! You're all set now. After following the previous steps, your project should resemble the screenshot below.
 
-Также положите в `data` изображение, которое будет служить обложкой, оно должно называться `cover.png`
+<image src="./docs/setup-finish.png" width=400></image>
 
-> ✏️ Укажите префикс своей коллекции в установив свойство `imagePrefix` в `config.js`  
+## 🖼 Prepare your images
 
-## 📇 Подготовьте метаданные
+Place your images in the `data` folder. The images should consist of a `prefix` and a sequential number that determines the token's position in the collection. For this tutorial, the token prefix is `cosmic_`. Therefore, `cosmic_1.png` will be the first token in the collection, `cosmic_2.png` will be the second token, and so on.
 
-Metadata refers to basic information that provides a description of our NFT or collection, such as its name, description, and other relevant details.
+Additionally, place an image named `cover.png` in the data folder, which will serve as the cover image for the collection.
 
-### Установите метадату для коллекции 
+For this tutorial, we have already prepared 10 images stored in the `data` folder. Feel free to use them as they are or replace them with your own images.
 
-> ✏️ в `config.js`: заполните поля `collectionName`, `collectionDescription` и `tokenPrefix`.
+> ✏️  In the `config.js` file, specify the prefix for your collection by setting the value of the `imagePrefix` property.
+
+## 📇 Prepare metadata
+
+Metadata is a basic information that provides a description of our NFT or collection, such as its name, description, token prefix and other relevant details.
+
+### Set the collection metadata
+
+> ✏️ In the `config.js` file, fill in the fields `collectionName`, `collectionDescription`, and `tokenPrefix`.
 >
-> Если вы хотите сделать нестинг для коллекции установите `nesting` проперти в config.js <TODO ссылка что такое нестинг>
+> If you want to make nesting available for your collection, also set the `nesting` property. [Read more about nesting](https://docs.unique.network/networks/nesting.html).
 
 
 After creation of collection metadata file we need to create metadata of our NFT's
 
-### Установите метадату для NFT 
+### Set the metadata for NFTs
 
-The property `attributes` in `config.js` file should describe traits of your NFT collection. Each trait should have:
+The property `attributes` in `config.js` file should describe traits of your NFT collection. In the simplest case, properties can be defined as a list. Each element represents the name of the property.
 
-  * A `name` название свойства токена
-  * A `required` field означает, обязательно ли свойство должно присутствовать у токена
-  * The `values`: OPTIONAL field. В случае если значением свойств могут быть только предопределенные значения перечислите их в этом поле
-
-**Example**
-```js
-        attributes: [
-            { name: 'eye', required: true, values: ['Normal Eyes', 'Tired Eyes', 'Brused Eyes'] },
-            { name: 'hair', required: false, values: ['Normal Hair', 'Hipster Style', 'Messy Hair', 'Overdue for Haircut', 'Bald Patches'] },
-            { name: 'nickname', required: true }
-        ],
+For this tutorial, the properties are predefined as follows:
+```sh
+attributes: [
+    'creature',
+    'description',
+],
 ```
-> <font size=1> `eye` обязательное перечисляемое свойство. `hair` перечисляемое, но не обязательное. `nickname` обязательное свойство, его можно будет заполнить произвольными значениями* </font>
+> <font size=1> Each token in the collection will have two properties: creature and description. Each field is mandatory to fill and can contain arbitrary data. </font>
 
-> ✏️ в `config.js`: заполните поля `collectionName`, `collectionDescription` и `tokenPrefix`.
 
-## 👨‍🎨 Опишите NFTs properties
+<details>
+  <summary>You can also specify more complex rules for properties. Find out how...</summary>
 
-Для последующей генерации токенов они должны быть закодирован в csv формате. Первым значением в заголовке должен быть `id` – порядковый номер каждого токена. Следом перечислены все существующие свойства коллекции, установленные на шаге <TODO>.
+  Rather than coding the properties as strings, use objects with the following properties:
+
+  - `name`: REQUIRED field. Represents the name of the property.
+  - `required`: OPTIONAL field. Set it to `false` if the property can be skipped for the NFT. The default value is `true`.
+  - `values`: OPTIONAL field. It is an array of possible values. If specified, the property can only have a value that is present in the list.
+
+  **Example**
+  ```js
+  attributes: [
+      { name: 'creature', required: true, values: ['Mammal', 'Reptiles', 'Birds'] },
+      { name: 'description', required: false }
+  ],
+  ```
+  > <font size=1> `creature` is a required enumerable property. Each token must have one of the following values for this property: `Mammal`, `Reptiles`, or `Birds`. On the other hand, the value for the `description` property is not specified, so it can be filled with arbitrary data. Additionally, the `description` property can be omitted entirely since its required field is set to false. </font>
+
+</details>
+
+## 👨‍🎨 Describe the properties of NFTs
+
+
+To create NFTs, their properties need to be encoded in CSV format. The first value in the header should be id, representing the sequential number of each token. Following that, list all the existing properties of the collection that were set in the previous step.
 
 **Example**
 ```csv
-id,eye,hair,nickname
-1,Normal Eyes,Hipster Style,Alex
-2,Tired Eyes,,the_hero
-3,Brused Eyes,Messy Hair,cryptoman
+id,creature,description
+1,Bear,"A bear perched in the sky, amid a sea of stars"
+2,Elephant,A skyward elephant 
+3,Giraffe,A blue giraffe that fascinates the eye.
 ...
 ```
 
-Самый простой способ создать такую структуру – воспользоваться [Google Sheets](https://docs.google.com/spreadsheets/d/1712bCiuCKYJOXsN9rIGW_QKJbMt312mw-2WQlSpXMzE/edit#gid=1148781766).
+The simplest way to create such a structure is to use [Google Sheets](https://docs.google.com/spreadsheets/d/1712bCiuCKYJOXsN9rIGW_QKJbMt312mw-2WQlSpXMzE/edit#gid=1148781766).
 
-Заоплните таблицу перечислив все свойства своей коллекции в header, а на каждой последующей строке перечислите те свойства, которые будут добавленны токену с соответсвующим `id`. Выгрузите заполненные значения нажав `File - Download - Comma Separated Values (.csv)`
+
+Complete the table by listing all the properties of your collection in the header. On each subsequent row, list the properties that will be added to the token with the corresponding id. Export the filled values by clicking on `File - Download - Comma Separated Values (.csv)`
 
 
 <image src="./docs/sheets.png"></image>
 
-> <font size=1> Значения для свойств `eye` и `hair` должны быть из списка созданного на шаге <TODO>. Свойство `hair` может быть пустым, так как значение required было установленно в false. Свойства для `nickname` могут быть заполнены произвольными строками </font>
+> <font size=1> In the image above, the data is filled in to create 10 tokens with two properties, `creature` and `description`. </font>
 
-> ✏️ переименнуйте выгруженный файл в `nfts.csv` и сохраните в папке `./data`
+> ✏️ Rename the exported file to `nfts.csv` and save it in the `data` folder.
 
 
 ## ⛓ Prepare Substrate Address with Seed
 
-Для создания коллекции и токенов вам понадобится адрес с токенами сети Юник. Для этого гайда мы используем опал, и вы можете бесплатно получить токены сети OPL используя [Telegram faucet bot](https://t.me/unique2faucet_opal_bot).
+To create the collection and tokens, you will need an address with balance. For this guide, we are using Opal network, and you can obtain OPL tokens for free by using [Telegram faucet bot](https://t.me/unique2faucet_opal_bot).
 
-If you have never worked with Substrate addresses and seeds before, исопльзуйте эти гайды <TODO>
 
-> ✏️ в `config.js`: заполните поле `ownerSeed`. 
+> ✏️ In the `config.js` file, fill in the `ownerSeed` field. 
 > 
-> ❗️ Don’t commit your secrets such as ownerSeed, to version control! We added `config.js` under `.gitignore` с этой целью
+> ❗️ Do not commit your secrets, such as `ownerSeed`, to version control! We have added `config.js` to the `.gitignore` file for this purpose.
 
-## 💎 Создайте коллекцию и токены
+## 💎 Create Collection and NFTs
 
-### Step 1: Загрузите изображения на IPFS
+### Step 1: Upload images to IPFS
 
-<TODO что такое ipfs>
+In simple terms, the Inter-Planetary File System (IPFS) is a distributed file storage protocol that enables a network of computers to store any kind of data in a reliable and unchangeable manner.
 
-Откройте терминал VS Code и выполните команду
+Open the VS Code terminal and execute the following command:
 
 ```sh
 node 1-upload-images.js
 ```
 
-Через небольшой промежуток времени вы увидите результат выполнения команды:
+After a short period of time, you will see the result of executing the command:
 
 ```
 📖 Reading CSV... done!
@@ -124,43 +162,43 @@ node 1-upload-images.js
 ❗️❗️❗️ add to "config.js" fileUrl: https://ipfs.unique.network...<your ipfs link>"
 ```
 
-Этот скрипт упакует все изображения в zip архив и сохранит его в `data/archive.zip`. Затем она загрузит его на ipfs. Убедитесь что все ваши файлы успешно загружены перейдя по ссылке.
+This script will pack all the images into a zip archive and save it as data/archive.zip. Then it will upload it to IPFS. Make sure that all your files are successfully uploaded by visiting the link provided in the console output.
 
-> ✏️ в `config.js`: заполните поле `fileUrl` ссылкой указанной в консоли. 
+> ✏️ In the `config.js` file, fill in the `fileUrl` set provided link. 
 
-### Step 2: Создайте коллекцию
+### Step 2: Create a collection
 
-Метаданные коллекции мы установили на шаге <TODO>. Еще раз проверьте что все ок. После выполните скрипт
+We have set the collection metadata in the previous steps. Double-check that the name, description, tokenPrefix, and attributes fields are filled in `config.js`. Afterward, execute the script.
 
 ```sh
 node 2-create-collection.js
 ```
 
-Через некоторое время в консоли:
+After a short period of time, you will see the result of executing the command:
 
 ```
 🚀 Creating collection... done!
 ❗️❗️❗️ add to "config.js" collectionId: 1877
 ```
 
-> ✏️ в `config.js`: заполните поле `collectionId` значением из консольного вывода. 
+> ✏️ In the `config.js` file, fill in the `collectionId` set provided value.
 
-### Step 3: Создайте токены
+### Step 3: Create NFTs
 
-Метаданные коллекции мы установили на шаге <TODO>. Еще раз проверьте что все ок. После выполните скрипт
+We have set the token metadata in the previous steps in the nfts.csv file, check again if it exists. After that, execute the following script.
 
 ```sh
 node 3-create-nfts.js
 ```
 
-Через некоторое время в консоли:
+After a short period of time, you will see the result of executing the command:
 
 ```
 🚚 successfully created 1 part of NFT's
 🚀 Creating NFTs... done!
 Token Ids: 1, 2, 3, 4, 5
 
-🔗 You can find it here: https://uniquescan.io/opal/collections/1877
+🔗 You can find your collection and tokens here: https://uniquescan.io/opal/collections/1877
 ```
 
-Your collection successfully created!
+Your collection has been successfully created!

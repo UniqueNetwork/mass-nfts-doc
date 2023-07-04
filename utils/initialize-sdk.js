@@ -4,7 +4,7 @@ const config = require('../config');
 
 async function initializeSdk() {
     if(!config.ownerSeed) {
-        console.log('❌ Error: config.ownerSeed is empty');
+        console.log('❌ Error: config.js - ownerSeed is empty');
         process.exit(1);
     }
     try {
