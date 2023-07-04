@@ -6,6 +6,11 @@ const config = require('../config');
 
 async function readCSV() {
   console.log('📖 Reading CSV...');
+  const nftDataExist = fs.existsSync(`${config.dataDir}/${config.tokensCSV}`)
+  if(!nftDataExist) {
+    console.log('❌ Error: cannot find "data/nfts.csv"');
+    process.exit(1);
+  }
   let data = [];
   await new Promise((resolve) => {
     let inputStream = fs.createReadStream(`${config.dataDir}/${config.tokensCSV}`, 'utf8');

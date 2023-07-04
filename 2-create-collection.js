@@ -31,7 +31,13 @@ const inputDataForCreateCollection = {
 // Encoding attributes from `config.js`
 function encodeAttributes() {
     const attributesSchema = {};
-    config.collection.attributes.forEach(({ name, required, values }, i) => {
+    config.collection.attributes.forEach((attribute, i) => {
+      let { name, required, values } = attribute;
+
+      // If attribute defined as a plain string: name = attribute:
+      if(typeof attribute === 'string') {
+        name = attribute;
+      }
       // check if attribute contains `values` field (enumerable property).
       let enumValues;
       if(values) {
