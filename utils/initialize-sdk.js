@@ -3,6 +3,10 @@ const { KeyringProvider } = require("@unique-nft/accounts/keyring");
 const config = require('../config');
 
 async function initializeSdk() {
+    if(!config.ownerSeed) {
+        console.log('❌ Error: config.ownerSeed is empty');
+        process.exit(1);
+    }
     try {
         const provider = new KeyringProvider({ type: 'sr25519' });
         await provider.init();

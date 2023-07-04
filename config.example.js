@@ -21,8 +21,14 @@ const config = {
             { name: 'mouth', required: true, values: ['Smirk', 'Regular Smile', 'Wide Smile'] }
         ],
 
-        fileUrl: '', // link to IPFS, you will get it after step 1-upload-images.js
-        collectionId: '',
+        fileUrl: '', // link to IPFS, you will get it after the step 1-upload-images.js
+        collectionId: '', // you will get the collection id after the step 2-create-collection.js
+
+        // To enable nesting set these properties:
+        nesting: {
+            tokenOwner: false,
+            collectionAdmin: false,    
+        }
     },
 
     // Extra configuration

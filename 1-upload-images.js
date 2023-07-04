@@ -1,7 +1,7 @@
 const initializeSdk = require('./utils/initialize-sdk');
 const createZipArchive = require('./utils/create-zip');
-const config = require('./config');
 const uploadImages = require('./utils/upload-images');
+const config = require('./config');
 
 async function main() {
   if(config.collection.fileUrl) {
