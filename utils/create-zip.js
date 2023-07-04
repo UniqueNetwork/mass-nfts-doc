@@ -9,7 +9,13 @@ const config = require('../config');
 let images;
 
 async function createZipArchive() {
+  console.log('📦 adding images to a zip archive...')
   images = await readCSV();
+  if(images.length < config.desiredCount) {
+    console.log('❌ Error: Total NFTs in .csv less than config.desiredCount');
+    process.exit(1);
+  }
+
   try {
     // path where to store zip
     const zipPath = path.resolve(
@@ -39,6 +45,7 @@ async function createZipArchive() {
     });
 
     zip.writeZip(zipPath);
+    console.log('📦 adding images to a zip archive... done!');
     return zipPath;
   } catch (e) {
       throw new Error(`error creating zip: ${e}`);

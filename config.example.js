@@ -20,6 +20,9 @@ const config = {
             { name: 'hair', required: false, values: ['Normal Hair', 'Hipster Style', 'Messy Hair', 'Overdue for Haircut', 'Bald Patches'] },
             { name: 'mouth', required: true, values: ['Smirk', 'Regular Smile', 'Wide Smile'] }
         ],
+
+        fileUrl: '', // link to IPFS, you will get it after step 1-upload-images.js
+        collectionId: '',
     },
 
     // Extra configuration

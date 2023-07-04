@@ -5,7 +5,7 @@ const config = require('../config');
 // Reads .csv file with NFTs attributes from {config.outputFolder}/{config.tokensCSV}
 
 async function readCSV() {
-  console.log('Reading CSV...');
+  console.log('📖 Reading CSV...');
   const data = [];
   await new Promise((resolve) => {
     let inputStream = fs.createReadStream(`${config.dataDir}/${config.tokensCSV}`, 'utf8');
@@ -17,7 +17,7 @@ async function readCSV() {
           console.log('A row arrived: ', row);
       })
       .on('end', function () {
-          console.log('No more rows!');
+          console.log('📖 Reading CSV... done!');
           resolve();
       });
   })
