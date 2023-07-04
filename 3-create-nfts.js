@@ -85,11 +85,18 @@ async function main() {
     result = [ ...result, ...parsed];
     await new Promise(resolve => setTimeout(resolve, 1000));
     chunkNumber++;
-    console.log(`🚚 successfully created ${chunkNumber} NFT's`);
+    console.log(`🚚 successfully created ${chunkNumber} part of NFT's`);
   }
 
   console.log('🚀 Creating NFTs... done!');
   console.log(`Token Ids: ${result.map(el => el.tokenId).join(', ')}`);
+
+  let network = config.endpoint.includes('opal')
+    ? 'opal'
+    : config.endpoint.includes('quartz')
+      ? 'quartz'
+      : 'unique'
+  console.log(`\n🔗 You can find it here: https://uniquescan.io/${network}/collections/${config.collection.collectionId}`); 
 }
 
 main().catch(console.error).finally(() => process.exit());

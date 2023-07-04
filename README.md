@@ -95,7 +95,7 @@ If you have never worked with Substrate addresses and seeds before, исопль
 > 
 > ❗️ Don’t commit your secrets such as ownerSeed, to version control! We added `config.js` under `.gitignore` с этой целью
 
-## Создайте коллекцию и токены
+## 💎 Создайте коллекцию и токены
 
 ### Step 1: Загрузите изображения на IPFS
 
@@ -128,3 +128,32 @@ node 1-upload-images.js
 ```sh
 node 2-create-collection.js
 ```
+
+Через некоторое время в консоли:
+
+```
+🚀 Creating collection... done!
+❗️❗️❗️ add to "config.js" collectionId: 1877
+```
+
+> ✏️ в `config.js`: заполните поле `collectionId` значением из консольного вывода. 
+
+### Step 3: Создайте токены
+
+Метаданные коллекции мы установили на шаге <TODO>. Еще раз проверьте что все ок. После выполните скрипт
+
+```sh
+node 3-create-nfts.js
+```
+
+Через некоторое время в консоли:
+
+```
+🚚 successfully created 1 part of NFT's
+🚀 Creating NFTs... done!
+Token Ids: 1, 2, 3, 4, 5
+
+🔗 
+```
+
+Your collection create
