@@ -1,31 +1,31 @@
-## 👩‍🎓 Для кого этот гайд
+## 👩‍🎓 Who is this guide for
 
-Этот туториал для тех у кого уже есть изображения токенов и он хочет создать большую коллекцию на сотни или тысячи токенов. Вы узнаете как создать коллекцию и сминтить большое количество токенов менее чем за 10 минут 
+This tutorial is for those who already have token images and want to create a large collection of hundreds or thousands of tokens. You will learn how to create a collection and mint a large number of tokens in less than 10 minutes.
 
-Если у вас их нет – <TODO: как сгенерировать>
+This guide is perfect for beginners who don't have extensive programming knowledge. However, having some familiarity with using the console will be useful.
 
-By the end of this tutorial, you will create this collection of Cosmic Animals
+<!-- Если у вас их нет – <TODO: как сгенерировать> -->
+
+By the completion of this tutorial, you will have a clear understanding of how to use scripts to mint vast collections, illustrated through the example of the Space Animals collection.
 
 <image src="./docs/intro.png"></image>
 
-## ⚙️ Скачайте и настройте проект
+## ⚙️ Setup environment
 
-> 💡 Если вы никогда не работали с git, node и npm прочитайте наш краткий гайд <TODO где>
+To get started, we'll need node.js and git installed on your computer. If you haven't worked with git, node, and npm before, we recommend reading our [brief guide](./setup.md) to properly configure your environment.
 
-Мы подготовили проект со всеми скриптами. 
 
-1. Скачайте его с github <TODO fix link>
+Download the project and install its dependencies. Open your terminal, copy and execute the following command:
+<!-- <TODO fix link> -->
 ```sh
 git clone -b add-scripts git@github.com:Maksandre/mass-nfts.git
-```
-
-1. Установите зависимости
-
-```sh
+cd ./mass-nfts
 npm install
 ```
 
-3. Создайте в корне проекта файл `config.js`, скопируйте в него содержимое `config.example.js`
+Keep your terminal open, as you will need it for the next steps in this guide.
+
+Создайте в корне проекта файл `config.js`, скопируйте в него содержимое `config.example.js`
 
 ## 🖼 Подготовьте изображения
 Положите свои изображения в папку `./data`. Изображения должны состоять из "prefix", и порядкого номера, который определит номер токена в коллекции. Для этого туториала префиксом токена будет `cosmic_`. Таким образом, `cosmic_1.png` будет первым токеном в коллекции, `cosmic_2.png`  – вторым и т.д.
