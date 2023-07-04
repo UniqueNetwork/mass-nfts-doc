@@ -19,19 +19,19 @@ async function main() {
   // If user already minted some NFTs than continue starting from the last minted id
   const { tokenId: lastTokenId } = await sdk.collection.lastTokenId({ collectionId });
   const offset = lastTokenId || 0;
-  if (config.desiredCount <= offset) {
+  if (config.desiredNumber <= offset) {
     console.log('✅ The desired number of tokens already created');
     return;
   }
 
-  // Desired count cannot be greater than NFT's described in nfts.csv
-  if (config.desiredCount > nftdata.length) {
+  // Desired number cannot be greater than NFT's described in nfts.csv
+  if (config.desiredNumber > nftdata.length) {
     console.log('❌ Error: The desired number of tokens is more than tokens in "nfts.csv"');
     process.exit(1);
   }
 
   // Get data from csv and encode it to NFT attributes
-  const data = Array(config.desiredCount)
+  const data = Array(config.desiredNumber)
     .slice(offset || 0)
     .fill({})
     .map((el, i) => {
@@ -68,8 +68,8 @@ async function main() {
   let result = [];
   // do `config.numberOfTokensGeneratedAtOnce` number of transactions
   let chunkNumber = 0;
-  while (result.length + offset < config.desiredCount) {
-    if (chunkNumber > config.desiredCount / config.numberOfTokensGeneratedAtOnce) throw new Error('unexpected value chunkNumber');
+  while (result.length + offset < config.desiredNumber) {
+    if (chunkNumber > config.desiredNumber / config.numberOfTokensGeneratedAtOnce) throw new Error('unexpected value chunkNumber');
     const chunkData = data.slice(chunkNumber * config.numberOfTokensGeneratedAtOnce, (chunkNumber + 1) * config.numberOfTokensGeneratedAtOnce);
     const { parsed, error } = await sdk.token.createMultiple.submitWaitResult({
       address: signer.address,

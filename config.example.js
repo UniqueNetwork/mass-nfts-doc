@@ -2,22 +2,31 @@ const config = {
     endpoint: 'https://rest.unique.network/opal/v1',
     ownerSeed: '', // Set your secret mnemonic phrase. Keep it save!
 
-    imagePrefix: 'workoholic_', // All NFT images names must start with this prefix
+    imagePrefix: 'cosmic_', // It is required that all NFT image names begin with prefix
     coverFileName: 'cover.png', // Your cover should have this name. Save it in ./data folder
-    // TODO rename
-    desiredCount: 5, // amount of NFTs to mint
+    desiredNumber: 5, // amount of NFTs to mint
 
     // Set desired collection attributes
     collection: {
-        name: 'Minting Workshop',
-        description: 'How to create a large NFT collection: <TODO link>',
-        tokenPrefix: 'MINT',
+        name: 'Space Animals',
+        description: 'This collection is created to showcase the process of mass minting tokens on the Unique network',
+        tokenPrefix: 'SANI',
 
+        // Each NFT token will have these properties.
+        // Feel free to set your own
         attributes: [
-            { name: 'eye', required: true, values: ['Normal Eyes', 'Tired Eyes', 'Brused Eyes'] },
-            { name: 'hair', required: false, values: ['Normal Hair', 'Hipster Style', 'Messy Hair', 'Overdue for Haircut', 'Bald Patches'] },
-            { name: 'nickname', required: true }
+            'creature',
+            'description',
         ],
+
+        // You can create more complex rules for each attribute
+        // set attributes as an object with the `name`, `required` and `values` properties
+        // Example:
+
+            // attributes: [
+            //     { name: 'creature', required: true, values: ['Mammal', 'Reptiles', 'Birds'] },
+            //     { name: 'description', required: false }
+            // ],
 
         fileUrl: '', // link to IPFS, you will get it after the step 1-upload-images.js
         collectionId: '', // you will get the collection id after the step 2-create-collection.js
