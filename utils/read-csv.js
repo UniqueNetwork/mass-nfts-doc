@@ -6,7 +6,7 @@ const config = require('../config');
 
 async function readCSV() {
   console.log('📖 Reading CSV...');
-  const data = [];
+  let data = [];
   await new Promise((resolve) => {
     let inputStream = fs.createReadStream(`${config.dataDir}/${config.tokensCSV}`, 'utf8');
 
@@ -14,14 +14,16 @@ async function readCSV() {
       .pipe(new CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true }))
       .on('data', function (row) {
           data.push(row);
-          console.log('A row arrived: ', row);
       })
       .on('end', function () {
-          console.log('📖 Reading CSV... done!');
+          console.log('📖 Reading CSV... done! Read tokens:', data.length - 1);
           resolve();
       });
   })
-  return data.splice(1);
+
+  // remove first row (header) and first column (id)
+  data = data.splice(1).map(row => row.splice(1));
+  return data;
 }
 
 module.exports = readCSV;

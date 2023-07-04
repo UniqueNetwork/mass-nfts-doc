@@ -4,6 +4,7 @@ const config = {
 
     imagePrefix: 'workoholic_', // All NFT images names must start with this prefix
     coverFileName: 'cover.png', // Your cover should have this name. Save it in ./data folder
+    // TODO rename
     desiredCount: 5, // amount of NFTs to mint
 
     // Set desired collection attributes
@@ -13,12 +14,9 @@ const config = {
         tokenPrefix: 'MINT',
 
         attributes: [
-            { name: 'head', required: true, values: ['Regular Head'] },
             { name: 'eye', required: true, values: ['Normal Eyes', 'Tired Eyes', 'Brused Eyes'] },
-            { name: 'brow', required: true, values: ['Thick Brows', 'Greyish Brows', 'Flat Brows'] },
-            { name: 'nose', required: true, values: ['Snub Nose', 'Button Nose', 'Droopy Nose'] },
             { name: 'hair', required: false, values: ['Normal Hair', 'Hipster Style', 'Messy Hair', 'Overdue for Haircut', 'Bald Patches'] },
-            { name: 'mouth', required: true, values: ['Smirk', 'Regular Smile', 'Wide Smile'] }
+            { name: 'nickname', required: true }
         ],
 
         fileUrl: '', // link to IPFS, you will get it after the step 1-upload-images.js

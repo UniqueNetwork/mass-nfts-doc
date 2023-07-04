@@ -20,9 +20,11 @@ const inputDataForCreateCollection = {
     },
     schemaName: 'unique',
     schemaVersion: '1.0.0',
+    attributesSchemaVersion: '1.0.0'
   },
   permissions: {
-    nesting: config.collection.nesting
+    nesting: config.collection.nesting,
+    mintMode: true
   },
 }
 
@@ -51,6 +53,7 @@ function encodeAttributes() {
   
       // add enumerable values if defined
       if (enumValues) attributesSchema[i.toString()].enumValues = enumValues;
+      inputDataForCreateCollection.schema.attributesSchema = attributesSchema;
     });
 }
 
