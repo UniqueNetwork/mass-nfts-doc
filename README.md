@@ -4,7 +4,7 @@ This tutorial is for those who already have token images and want to create a la
 
 This guide is perfect for beginners who don't have extensive programming knowledge. However, having some familiarity with using the console will be useful.
 
-<!-- Если у вас их нет – <TODO: как сгенерировать> -->
+<!-- If you don't have images how to generte it guide -->
 
 By the completion of this tutorial, you will have a clear understanding of how to use scripts to mint vast collections, illustrated through the example of the Space Animals collection.
 
@@ -14,7 +14,7 @@ By the completion of this tutorial, you will have a clear understanding of how t
 
 To get started, we'll need node.js, git, and Visual Studio Code installed on your computer. If you haven't worked with git, node, and npm before, we recommend reading our [brief guide](./setup.md) to properly configure your environment.
 
-### Download the project.
+### Download the project
 
 You may do it in two ways.
 
@@ -25,7 +25,7 @@ git clone -b add-scripts git@github.com:Maksandre/mass-nfts.git
 ```
 
 <!-- TODO fix link -->
-2. Manually. Go to [Github repository](https://github.com/Maksandre/mass-nfts/tree/add-scripts) and download the project by clicking `Code - Download ZIP`
+2. Manually. Go to the [Github repository](https://github.com/Maksandre/mass-nfts/tree/add-scripts) and download the project by clicking `Code - Download ZIP`
 
 <image src="./docs/download.png"></image>
 
