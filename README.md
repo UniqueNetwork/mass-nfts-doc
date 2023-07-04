@@ -8,12 +8,12 @@
 
 Мы подготовили проект со всеми скриптами. 
 
-1. Скачайте его с github
+1. Скачайте его с github <TODO fix link>
 ```sh
-git clone <TODO>
+git clone -b add-scripts git@github.com:Maksandre/mass-nfts.git
 ```
 
-2. Установите зависимости
+1. Установите зависимости
 
 ```sh
 npm install
