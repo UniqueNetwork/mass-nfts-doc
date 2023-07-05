@@ -6,7 +6,7 @@ This guide is perfect for beginners who don't have extensive programming knowled
 
 <!-- If you don't have images how to generte it guide -->
 
-By the completion of this tutorial, you will have a clear understanding of how to use scripts to mint vast collections, illustrated through the example of the Space Animals collection.
+By the completion of this tutorial, you will have a clear understanding of how to use scripts to mint vast collections, illustrated through the example of the [Space Animals collection](https://uniquescan.io/opal/collections/1883).
 
 <image src="./docs/intro.png"></image>
 
@@ -65,7 +65,7 @@ Metadata is a basic information that provides a description of our NFT or collec
 
 ### Set the collection metadata
 
-> ✏️ In the `config.js` file, fill in the fields `collectionName`, `collectionDescription`, and `tokenPrefix`.
+> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (xax 256 symbols), and `tokenPrefix` (max 4 symbold).
 >
 > If you want to make nesting available for your collection, also set the `nesting` property. [Read more about nesting](https://docs.unique.network/networks/nesting.html).
 
@@ -123,7 +123,7 @@ id,creature,description
 The simplest way to create such a structure is to use [Google Sheets](https://docs.google.com/spreadsheets/d/1712bCiuCKYJOXsN9rIGW_QKJbMt312mw-2WQlSpXMzE/edit#gid=1148781766).
 
 
-Complete the table by listing all the properties of your collection in the header. On each subsequent row, list the properties that will be added to the token with the corresponding id. Export the filled values by clicking on `File - Download - Comma Separated Values (.csv)`
+Complete the table by listing all the properties of your collection in the header. On each subsequent row, list the properties that will be added to the token with the corresponding id (max 32768 symbols). Export the filled values by clicking on `File - Download - Comma Separated Values (.csv)`
 
 
 <image src="./docs/sheets.png"></image>
@@ -138,7 +138,18 @@ We have already included a file named `nfts.csv` with data for 10 NFTs. You can 
 
 ## ⛓ Prepare Substrate Address with Seed
 
-To create the collection and tokens, you will need an address with balance. For this guide, we are using Opal network, and you can obtain OPL tokens for free by using [Telegram faucet bot](https://t.me/unique2faucet_opal_bot).
+To create the collection and tokens, you will need an address with balance. If you don't have account yet you may create it with [Polkadot{.js} extension for Chrome](https://polkadot.js.org/extension/).
+
+For this guide, we are using Opal network, and you can obtain OPL tokens for free by using [Telegram faucet bot](https://t.me/unique2faucet_opal_bot).
+
+- Quartz Network tokens (QTZ) are available on [MEXC](https://www.mexc.com/ru-RU/exchange/QTZ_USDT?_from=search)
+- For Unique Network tokens (UNQ) you can visit [Huobi](https://www.huobi.com/en-us/trade/unq_usdt?type=spot)
+
+> 💡 If you are ready to mint tokens on the mainnet (Quartz or Unique), make sure to change the endpoint variable in the config.js file. Set it to `https://rest.unique.network/quartz/v1` for Quartz or `https://rest.unique.network/unique/v1` for Unique.
+>
+> - Quartz Network tokens (QTZ) are available on [MEXC](https://www.mexc.com/ru-RU/exchange/QTZ_USDT?_from=search)
+> 
+> - For Unique Network tokens (UNQ) you can visit [Huobi](https://www.huobi.com/en-us/trade/unq_usdt?type=spot)
 
 
 > ✏️ In the `config.js` file, fill in the `ownerSeed` field. 
