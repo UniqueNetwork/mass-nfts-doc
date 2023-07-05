@@ -55,6 +55,8 @@ Additionally, place an image named `cover.png` in the data folder, which will se
 
 For this tutorial, we have already prepared 10 images stored in the `data` folder. Feel free to use them as they are or replace them with your own images.
 
+<image src="./docs/images.png"></image>
+
 > ✏️  In the `config.js` file, specify the prefix for your collection by setting the value of the `imagePrefix` property.
 
 ## 📇 Prepare metadata
@@ -130,6 +132,9 @@ Complete the table by listing all the properties of your collection in the heade
 
 > ✏️ Rename the exported file to `nfts.csv` and save it in the `data` folder.
 
+We have already included a file named `nfts.csv` with data for 10 NFTs. You can use this file as it is or add more tokens and properties to it.
+
+<image src="./docs/csv.png"></image>
 
 ## ⛓ Prepare Substrate Address with Seed
 
@@ -152,17 +157,15 @@ Open the VS Code terminal and execute the following command:
 node 1-upload-images.js
 ```
 
+
+
 After a short period of time, you will see the result of executing the command:
 
-```
-📖 Reading CSV... done!
-📦 adding images to a zip archive... done!
-🚀 Upload images...
-🚀 Upload images... done!
-❗️❗️❗️ add to "config.js" fileUrl: https://ipfs.unique.network...<your ipfs link>"
-```
+<image src="./docs/upload.png"></image>
 
 This script will pack all the images into a zip archive and save it as data/archive.zip. Then it will upload it to IPFS. Make sure that all your files are successfully uploaded by visiting the link provided in the console output.
+
+<image src="./docs/ipfs.png"></image>
 
 > ✏️ In the `config.js` file, fill in the `fileUrl` set provided link. 
 
@@ -182,6 +185,9 @@ After a short period of time, you will see the result of executing the command:
 ```
 
 > ✏️ In the `config.js` file, fill in the `collectionId` set provided value.
+
+Your collection has been created, and you can check it on your [wallet](https://wallet.unique.network/) or on [uniquescan.io](https://uniquescan.io/). Now your collection doesn't have any NFTs yet, so let's create some.
+
 
 ### Step 3: Create NFTs
 

@@ -64,6 +64,10 @@ function encodeAttributes() {
 }
 
 async function createCollection() {
+  if(!config.fileUrl) {
+    console.log('❌ Error: config.js - fileUrl property does not set');
+    process.exit(1);
+  }
   if(config.collection.collectionId) {
     console.log(
       '❗️❗️❗️ you already set a collectionId in "config.js":',
