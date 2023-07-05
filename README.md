@@ -157,15 +157,11 @@ Open the VS Code terminal and execute the following command:
 node 1-upload-images.js
 ```
 
-
-
 After a short period of time, you will see the result of executing the command:
 
 <image src="./docs/upload.png"></image>
 
 This script will pack all the images into a zip archive and save it as data/archive.zip. Then it will upload it to IPFS. Make sure that all your files are successfully uploaded by visiting the link provided in the console output.
-
-<image src="./docs/ipfs.png"></image>
 
 > ✏️ In the `config.js` file, fill in the `fileUrl` set provided link. 
 
@@ -207,4 +203,4 @@ Token Ids: 1, 2, 3, 4, 5
 🔗 You can find your collection and tokens here: https://uniquescan.io/opal/collections/1877
 ```
 
-Your collection has been successfully created!
+Your collection and tokens has been successfully created! Now you can connect your wallet to [Unique Market](https://unqnft.io/) and list your NFTs for sale.
