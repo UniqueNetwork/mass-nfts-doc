@@ -23,7 +23,7 @@ You may do it in two ways.
 git clone git@github.com:UniqueNetwork/mass-nfts.git
 ```
 
-1. Manually. Go to the [Github repository](https://github.com/UniqueNetwork/mass-nfts) and download the project by clicking `Code - Download ZIP`. Unzip it after downloading.
+2. Manually. Go to the [Github repository](https://github.com/UniqueNetwork/mass-nfts) and download the project by clicking `Code - Download ZIP`. Unzip it after downloading.
 
 <image src="./docs/download.png"></image>
 
