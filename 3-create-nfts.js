@@ -1,6 +1,7 @@
 const initializeSdk = require('./utils/initialize-sdk');
 const readCSV = require('./utils/read-csv');
 const config = require('./config');
+const { throwError } = require('./utils/errors');
 
 let nftdata;
 
@@ -10,8 +11,7 @@ async function main() {
 
   const collectionId = config.collection.collectionId;
   if (!collectionId) {
-    console.log('❌ Error: collectionId is not set in "config.js"');
-    process.exit(1);
+    throwError('collectionId is not set in "config.js". Did you forget to save the file?')
   }
 
   const { sdk, signer } = await initializeSdk();
@@ -40,8 +40,7 @@ async function main() {
             // attribute's value will be index of this value
             const imageIdx = attributeValues.findIndex(v => v === el || v.value === el) + 1;
             if(imageIdx === 0) {
-              console.log(`❌ Error: Cannot find "${el}" among the attribute values "${attributeValues.join()}" in "config.js"`)
-              process.exit(1);
+              throwError(`Cannot find "${el}" among the attribute values "${attributeValues.join()}" in "config.js"`);
             }
             encodedAttributes[j] = imageIdx - 1;
           } else {
@@ -72,8 +71,7 @@ async function main() {
     });
 
     if(error) {
-      console.log('❌ Error during NFTs minting:', error.message);
-      process.exit(1);
+      throwError(`during NFTs minting: ${error.message}`)
     }
 
     result = [ ...result, ...parsed];

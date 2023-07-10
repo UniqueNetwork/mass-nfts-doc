@@ -1,5 +1,6 @@
 const initializeSdk = require('./utils/initialize-sdk');
 const config = require('./config');
+const { throwError } = require('./utils/errors');
 
 
 // Basic data structure for creating a collection in Unique
@@ -65,8 +66,7 @@ function encodeAttributes() {
 
 async function createCollection() {
   if(!config.collection.fileUrl) {
-    console.log('❌ Error: config.js - fileUrl property does not set');
-    process.exit(1);
+    throwError('config.js - fileUrl property does not set. Did you forget to save the file?');
   }
   if(config.collection.collectionId) {
     console.log(

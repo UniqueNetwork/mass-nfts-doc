@@ -1,11 +1,11 @@
 const Sdk = require("@unique-nft/sdk");
 const { KeyringProvider } = require("@unique-nft/accounts/keyring");
 const config = require('../config');
+const { throwError } = require("./errors");
 
 async function initializeSdk() {
     if(!config.ownerSeed) {
-        console.log('❌ Error: config.js - ownerSeed is empty');
-        process.exit(1);
+        throwError('config.js - ownerSeed is empty. Did you forget to save the file?');
     }
     try {
         const provider = new KeyringProvider({ type: 'sr25519' });

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const CsvReadableStream = require('csv-reader');
 const config = require('../config');
+const { throwError } = require('./errors');
 
 // Reads .csv file with NFTs attributes from {config.outputFolder}/{config.tokensCSV}
 
@@ -8,8 +9,7 @@ async function readCSV() {
   console.log('📖 Reading CSV...');
   const nftDataExist = fs.existsSync(`${config.dataDir}/${config.tokensCSV}`)
   if(!nftDataExist) {
-    console.log('❌ Error: cannot find "data/nfts.csv"');
-    process.exit(1);
+    throwError('cannot find "data/nfts.csv"');
   }
   let data = [];
   await new Promise((resolve) => {
