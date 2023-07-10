@@ -140,10 +140,21 @@ We have already included a file named `nfts.csv` with data for 10 NFTs. You can 
 
 To create the collection and tokens, you will need an address with balance. If you don't have account yet you may create it with [Polkadot{.js} extension for Chrome](https://polkadot.js.org/extension/).
 
-For this guide, we are using Opal network, and you can obtain OPL tokens for free by using [Telegram faucet bot](https://t.me/unique2faucet_opal_bot).
+- Open the Polkadot{.js} extension in your browser.
+- Look for the "+" icon and click on it.
+- A menu will appear. From the options presented, select "Create new account".
+- A 12-words mnemonic phrase will be generated. Make sure to save it securely.
 
-- Quartz Network tokens (QTZ) are available on [MEXC](https://www.mexc.com/ru-RU/exchange/QTZ_USDT?_from=search)
-- For Unique Network tokens (UNQ) you can visit [Huobi](https://www.huobi.com/en-us/trade/unq_usdt?type=spot)
+<image src="./docs/extension.png"></image>
+
+> ✏️ In the `config.js` file, fill in the `ownerSeed` field.
+> 
+> ❗️ Do not commit your secrets, such as `ownerSeed`, to version control! We have added `config.js` to the `.gitignore` file for this purpose.
+
+### Get some tokens
+
+For this guide, we are using Opal network, and you can obtain OPL tokens for free by using [Telegram faucet bot](https://t.me/unique2faucet_opal_bot). You will have to provide your address (not a mnemonic phrase!). Click on the circle icon next to your account in the Polkadot extension to copy it.
+
 
 > 💡 If you are ready to mint tokens on the mainnet (Quartz or Unique), make sure to change the endpoint variable in the config.js file. Set it to `https://rest.unique.network/quartz/v1` for Quartz or `https://rest.unique.network/unique/v1` for Unique.
 >
@@ -151,10 +162,6 @@ For this guide, we are using Opal network, and you can obtain OPL tokens for fre
 > 
 > - For Unique Network tokens (UNQ) you can visit [Huobi](https://www.huobi.com/en-us/trade/unq_usdt?type=spot)
 
-
-> ✏️ In the `config.js` file, fill in the `ownerSeed` field. 
-> 
-> ❗️ Do not commit your secrets, such as `ownerSeed`, to version control! We have added `config.js` to the `.gitignore` file for this purpose.
 
 ## 💎 Create Collection and NFTs
 
@@ -214,4 +221,4 @@ Token Ids: 1, 2, 3, 4, 5
 🔗 You can find your collection and tokens here: https://uniquescan.io/opal/collections/1877
 ```
 
-Your collection and tokens have been successfully created! Now you can connect your wallet to [Unique Market](https://unqnft.io/) and list your NFTs for sale.
+Your collection and tokens have been successfully created! You can find it in your [wallet](https://wallet.unique.network/). Or you can connect to [Unique Market](https://unqnft.io/) and list your NFTs for sale.
