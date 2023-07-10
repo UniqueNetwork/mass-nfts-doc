@@ -65,7 +65,7 @@ Metadata is a basic information that provides a description of our NFT or collec
 
 ### Set the collection metadata
 
-> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (xax 256 symbols), and `tokenPrefix` (max 4 symbold).
+> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols), and `tokenPrefix` (max 4 symbold).
 >
 > If you want to make nesting available for your collection, also set the `nesting` property. [Read more about nesting](https://docs.unique.network/networks/nesting.html).
 
@@ -214,4 +214,4 @@ Token Ids: 1, 2, 3, 4, 5
 🔗 You can find your collection and tokens here: https://uniquescan.io/opal/collections/1877
 ```
 
-Your collection and tokens has been successfully created! Now you can connect your wallet to [Unique Market](https://unqnft.io/) and list your NFTs for sale.
+Your collection and tokens have been successfully created! Now you can connect your wallet to [Unique Market](https://unqnft.io/) and list your NFTs for sale.
