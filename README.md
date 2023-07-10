@@ -19,13 +19,11 @@ To get started, we'll need node.js, git, and Visual Studio Code installed on you
 You may do it in two ways.
 
 1. Using terminal. Open your terminal, `cd` to desired directory, and execute the following command:
-<!-- <TODO fix link> -->
 ```sh
-git clone -b add-scripts git@github.com:Maksandre/mass-nfts.git
+git clone git@github.com:UniqueNetwork/mass-nfts.git
 ```
 
-<!-- TODO fix link -->
-2. Manually. Go to the [Github repository](https://github.com/Maksandre/mass-nfts/tree/add-scripts) and download the project by clicking `Code - Download ZIP`
+1. Manually. Go to the [Github repository](https://github.com/UniqueNetwork/mass-nfts) and download the project by clicking `Code - Download ZIP`. Unzip it after downloading.
 
 <image src="./docs/download.png"></image>
 
