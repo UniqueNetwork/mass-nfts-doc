@@ -6,10 +6,42 @@ In this tutorial, we will walk you through setting up your development environme
 
 ### 1. Install Node.js
 
-There are various methods to install Node on your machine. One option is via package manager [package manager](https://nodejs.org/en/download/package-manager) or by downloading the [installer directly](https://nodejs.org/en).
+There are various methods to install Node on your machine. We recomend to use [nvm for Mac](https://github.com/nvm-sh/nvm) or [nvm-windows](https://github.com/coreybutler/nvm-windows).
 
-> 💡 We recommend using the node 16x version because compatibility with it is well tested. However, it is likely that higher versions will also work well.
+#### Mac OS
+
+> Install & Update Script
 > 
+> To install or update nvm, you should run the install script. To do that, you may either download and run the script manually, or use the following cURL or Wget command:
+> ```sh
+> curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+> ```
+>
+> ```sh
+> wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+> ```
+>
+> Running either of the above commands downloads a script and runs it. The script clones the nvm repository to ~/.nvm, and attempts to add the source lines from the snippet below to the correct profile file (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
+>
+> ```
+> export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+> [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+> ```
+
+After installation, you may need to reload your terminal, and than set your node.js version:
+
+```sh
+nvm use 18
+```
+
+#### Windows
+
+Follow this steps from nvm-windows documentation: https://github.com/coreybutler/nvm-windows#installation--upgrades
+
+You can also follow this [guide from npm Docs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+---
+
 Once you’re done, run `node --version` on a terminal to check your installation:
 
 ```sh
