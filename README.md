@@ -20,10 +20,10 @@ You may do it in two ways.
 
 1. Using terminal. Open your terminal, `cd` to desired directory, and execute the following command:
 ```sh
-git clone git@github.com:UniqueNetwork/mass-nfts.git
+git clone git@github.com:UniqueNetwork/mass-nfts-doc.git
 ```
 
-2. Manually. Go to the [Github repository](https://github.com/UniqueNetwork/mass-nfts) and download the project by clicking `Code - Download ZIP`. Unzip it after downloading.
+2. Manually. Go to the [Github repository](https://github.com/UniqueNetwork/mass-nfts-doc) and download the project by clicking `Code - Download ZIP`. Unzip it after downloading.
 
 <image src="./docs/download.png"></image>
 
