@@ -1,6 +1,6 @@
 const initializeSdk = require('./utils/initialize-sdk');
 const config = require('./config');
-const { throwError } = require('./utils/errors');
+const throwError = require('./utils/errors');
 
 
 // Basic data structure for creating a collection in Unique

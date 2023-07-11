@@ -1,7 +1,7 @@
 const initializeSdk = require('./utils/initialize-sdk');
 const readCSV = require('./utils/read-csv');
 const config = require('./config');
-const { throwError } = require('./utils/errors');
+const throwError = require('./utils/errors');
 
 let nftdata;
 

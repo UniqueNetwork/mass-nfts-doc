@@ -1,7 +1,7 @@
 const fs = require('fs');
 const CsvReadableStream = require('csv-reader');
 const config = require('../config');
-const { throwError } = require('./errors');
+const throwError = require('./errors');
 
 // Reads .csv file with NFTs attributes from {config.outputFolder}/{config.tokensCSV}
 

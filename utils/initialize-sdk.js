@@ -1,7 +1,7 @@
 const Sdk = require("@unique-nft/sdk");
 const { KeyringProvider } = require("@unique-nft/accounts/keyring");
 const config = require('../config');
-const { throwError } = require("./errors");
+const throwError = require("./errors");
 
 async function initializeSdk() {
     if(!config.ownerSeed) {
