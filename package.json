@@ -1,14 +1,14 @@
 {
-  "name": "nft-minting",
+  "name": "mass-nfts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Showcase the process of mass minting",
   "main": "index.js",
   "scripts": {
-    "test": "TODO"
+    "test": ""
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "dependencies": {
     "@unique-nft/accounts": "^0.3.6",
     "@unique-nft/sdk": "^0.2.17",

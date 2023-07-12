@@ -21,7 +21,7 @@ async function initializeSdk() {
             signer
         };
     } catch (e) {
-        throw new Error(`error initialize sdk: ${e}`);
+        throwError(`cannot initialize sdk: ${e.message}`);
     }
 }
 

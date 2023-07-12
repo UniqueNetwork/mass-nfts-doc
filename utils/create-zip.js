@@ -2,6 +2,7 @@ const AdmZip = require('adm-zip');
 const path = require('path');
 const readCSV = require('./read-csv');
 const config = require('../config');
+const throwError = require('./errors');
 
 // Creates a zip archive with `images.length` prefixed images and cover.png
 // Images should be stored in config.dataDir directory (`data` by default)
@@ -44,7 +45,7 @@ async function createZipArchive() {
     console.log('📦 adding images to a zip archive... done!');
     return zipPath;
   } catch (e) {
-      throw new Error(`error creating zip: ${e}`);
+      throwError(`cannot create zip: ${e.message}`);
   }
 }
 
