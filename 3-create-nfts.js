@@ -1,12 +1,12 @@
 const initializeSdk = require('./utils/initialize-sdk');
-const readCSV = require('./utils/read-csv');
+const {readNFTsCsv} = require('./utils/read-csv');
 const config = require('./config');
 const throwError = require('./utils/errors');
 
 let nftdata;
 
 async function main() {
-  nftdata = await readCSV(`${config.outputFolder}/nfts.csv`);
+  nftdata = await readNFTsCsv();
   console.log('🚀 Creating NFTs...');
 
   const collectionId = config.collection.collectionId;

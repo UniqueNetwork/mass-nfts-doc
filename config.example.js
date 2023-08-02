@@ -37,10 +37,15 @@ const config = {
         }
     },
 
+    desiredCount: 100,
+
     // Extra configuration
+    weightSeparator: '%',
     numberOfTokensGeneratedAtOnce: 25,
     dataDir: './data',
     tokensCSV: 'nfts.csv',
+    generationDir: './generate',
+    attributesCsv: 'attributes.csv',
     imagesInParallel: require('os').cpus().length,
 }
 

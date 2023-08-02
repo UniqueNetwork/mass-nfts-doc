@@ -60,8 +60,8 @@ function encodeAttributes() {
   
       // add enumerable values if defined
       if (enumValues) attributesSchema[i.toString()].enumValues = enumValues;
-      inputDataForCreateCollection.schema.attributesSchema = attributesSchema;
     });
+    inputDataForCreateCollection.schema.attributesSchema = attributesSchema;
 }
 
 async function createCollection() {
