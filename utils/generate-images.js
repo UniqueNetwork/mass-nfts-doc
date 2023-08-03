@@ -27,29 +27,17 @@ function getImageData(arr) {
   return images;
 }
 
-function printAttributes(i) {
-  let attrs = '[' + nfts[i] + '] => ';
-  for (let j=0; j<attributes.length; j++) {
-    if (nfts[i][j] > 0) {
-      attrs += attributes[j].values[nfts[i][j]-1] + ', ';
-    }
-  }
-
-  console.log(`Attributes for NFT ${i+1}:`, attrs);
-}
-
 async function _generateImages() {
   const pool = Pool(() => spawn(new Worker('./generate-images.worker.js')), config.imagesInParallel);
 
   for (let i = 0; i < nfts.length; i++) {
     const nft = nfts[i];
-    const output = `${config.generationDir}/data/${config.imagePrefix}${i+1}.png`;
+    const output = `${config.dataDir}/${config.imagePrefix}${i+1}.png`;
 
     const images = getImageData(nft);
 
     pool.queue(async (generateImage) => {
-      const num = await generateImage({images, output, num: i});
-      printAttributes(num);
+      await generateImage({images, output, num: i});
     });
   }
 
@@ -58,11 +46,12 @@ async function _generateImages() {
 }
 
 async function generateImages() {
+  console.log('🖼 generating images...');
   attributes = config.collection.attributes;
-  nfts = await readNFTsCsv(path.resolve(config.generationDir, 'data', 'nfts.csv'));
-  console.time('images');
+  nfts = await readNFTsCsv(path.resolve(config.dataDir, 'nfts.csv'));
   await _generateImages();
-  console.timeEnd('images');
+  console.log('🖼 generating images... done!');
+  console.log('🖼 images folder: data');
 }
 
 module.exports = generateImages;

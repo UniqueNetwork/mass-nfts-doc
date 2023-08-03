@@ -31,8 +31,9 @@ function getNFTAttributes(attributes) {
   return nft;
 }
 
-async function generateNFTs() {
-  const attributes = await formatAttributes();
+function generateNftsData(attributes) {
+  const NFT_DATA_PATH = path.resolve(config.dataDir, 'nfts.csv');
+
   const nfts = new Array(config.desiredCount)
     .fill(undefined).map((_v, i) => [i+1, ...getNFTAttributes(attributes)]);
 
@@ -40,10 +41,28 @@ async function generateNFTs() {
     separator: ',',
     header: ['id', attributes.map((attr) => attr.name)],
   });
-  fs.writeFileSync(path.resolve(config.generationDir, 'data', 'nfts.csv'), nftsToCSV);
-  console.log('Nft data saved');
+  fs.writeFileSync(NFT_DATA_PATH, nftsToCSV);
+  console.log(`💾 Nft data saved: ${NFT_DATA_PATH}`);
+}
 
+async function generateNFTs() {
+  if (fs.existsSync(config.dataDir)) {
+    fs.rmSync(config.dataDir, {recursive: true, force: true});
+    fs.mkdirSync(config.dataDir);
+  } else {
+    fs.mkdirSync(config.dataDir);
+  }
+
+  const attributes = await formatAttributes();
+  generateNftsData(attributes);
   await generateImages();
+
+  if (fs.existsSync(path.resolve(config.generationDir, config.coverFileName))) {
+    fs.copyFileSync(
+      path.resolve(config.generationDir, config.coverFileName), 
+      path.resolve(config.dataDir, config.coverFileName)
+    );
+  }
 }
 
 generateNFTs().catch(console.error);

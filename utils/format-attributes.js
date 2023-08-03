@@ -5,6 +5,8 @@ const fs = require('fs');
 
 async function formatAttributes() {
   try {
+    const ATTRIBUTES_PATH = './metadata.json';
+    console.log('🖨 formatting attributes');
     const attributes = await readAttributesCsv();
     const jsonAttributes = [];
     console.log('👨‍🔬 Testing attributes...');
@@ -14,8 +16,8 @@ async function formatAttributes() {
       jsonAttributes.push(attributeObj);
     }
     console.log('👨‍🔬 Testing attributes... done!');
-    fs.writeFileSync('./attributes.json', JSON.stringify(jsonAttributes));
-    console.log('💾 Attributes saved in "attributes.json"');
+    fs.writeFileSync(ATTRIBUTES_PATH, JSON.stringify(jsonAttributes));
+    console.log('💾 Attributes saved to "metadata.json"');
     return jsonAttributes;
   } catch (e) {
     throwError('cannot format attributes');
