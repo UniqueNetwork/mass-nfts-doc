@@ -46,11 +46,11 @@ Lastly, create a file named `config.js` in the root directory of your project an
 
 Congratulations! You're all set now. After following the previous steps, your project should resemble the screenshot below.
 
-<image src="./docs/setup-finish.png" width=400></image>
+<image src="./docs/setup-finish.png" width=600></image>
 
 ## 🖼 Design image parts
 
-<image src="./docs/combine.png" width=400></image>
+<image src="./docs/combine.png" width=600></image>
 
 The image parts should generally include some combinable parts with transparent background. Store them in `generate` folder. Для этого примера мы уже положили некоторое количество изображений, feel free to use them, or замените их на свои.
 
