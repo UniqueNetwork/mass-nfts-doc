@@ -3,9 +3,9 @@ const {spawn, Pool, Worker} = require('threads');
 const getConfig = require('./get-config');
 const path = require('path');
 
+let config;
 let attributes
 let nfts;
-let config = getConfig();
 
 function getImageData(arr) {
   const images = [];
@@ -47,6 +47,7 @@ async function _generateImages() {
 
 async function generateImages() {
   console.log('🖼 generating images...');
+  config = getConfig();
   attributes = config.collection.attributes;
   nfts = await readNFTsCsv(path.resolve(config.dataDir, 'nfts.csv'));
   await _generateImages();
