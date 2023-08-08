@@ -1,6 +1,6 @@
 const AdmZip = require('adm-zip');
 const path = require('path');
-const readCSV = require('./read-csv');
+const {readNFTsCsv} = require('./read-csv');
 const config = require('../config');
 const throwError = require('./errors');
 
@@ -11,7 +11,7 @@ let images;
 
 async function createZipArchive() {
   console.log('📦 adding images to a zip archive...')
-  images = await readCSV();
+  images = await readNFTsCsv();
 
   try {
     // path where to store zip

@@ -63,7 +63,7 @@ Metadata is a basic information that provides a description of our NFT or collec
 
 ### Set the collection metadata
 
-> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols), and `tokenPrefix` (max 4 symbold).
+> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols), and `symbol` (max 4 symbols).
 >
 > If you want to make nesting available for your collection, also set the `nesting` property. [Read more about nesting](https://docs.unique.network/networks/nesting.html).
 
@@ -183,7 +183,7 @@ This script will pack all the images into a zip archive and save it as data/arch
 
 ### Step 2: Create a collection
 
-We have set the collection metadata in the previous steps. Double-check that the name, description, tokenPrefix, and attributes fields are filled in `config.js`. Afterward, execute the script.
+We have set the collection metadata in the previous steps. Double-check that the name, description, symbol, and attributes fields are filled in `config.js`. Afterward, execute the script.
 
 ```sh
 node 2-create-collection.js

@@ -1,0 +1,6 @@
+name,chance,values,,,
+head,100,alien%90,zombie%10,,
+eye,100,simple%33,joy%33,dead%33,
+mouth,100,smile%30,simple%60,beard%10,
+hair,70,bush%30,messy%20,green punk%15,red punk%5
+jewelry,20,gold%5,silver%15,,

@@ -1,6 +1,7 @@
 const initializeSdk = require('./utils/initialize-sdk');
-const config = require('./config');
 const throwError = require('./utils/errors');
+const getConfig = require('./utils/get-config');
+const config = getConfig();
 
 
 // Basic data structure for creating a collection in Unique
@@ -9,7 +10,7 @@ const inputDataForCreateCollection = {
   mode: 'Nft',
   name: config.collection.name,                 // Collection name
   description: config.collection.description,   // Collection description
-  tokenPrefix: config.collection.tokenPrefix,   // Token prefix
+  tokenPrefix: config.collection.symbol,   // Token short prefix, e.g. PUNK
   metaUpdatePermission: 'ItemOwner',
   readOnly: true,
   schema: {
@@ -60,8 +61,8 @@ function encodeAttributes() {
   
       // add enumerable values if defined
       if (enumValues) attributesSchema[i.toString()].enumValues = enumValues;
-      inputDataForCreateCollection.schema.attributesSchema = attributesSchema;
     });
+    inputDataForCreateCollection.schema.attributesSchema = attributesSchema;
 }
 
 async function createCollection() {
@@ -85,7 +86,13 @@ async function createCollection() {
             ...inputDataForCreateCollection,
             address: signer.address
           },
-      );
+      ).catch(e => {
+        if (e.message.includes('Inability to pay some fees')) {
+          throwError('account balance low');
+        } else {
+          throwError(e.message);
+        }
+      });
   console.log('🚀 Creating collection... done!');
   console.log(`❗️❗️❗️ add to "config.js" collectionId: ${collectionId}`);
 }

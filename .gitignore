@@ -4,3 +4,5 @@
 
 config.js
 /data/archive.zip
+/generate/data
+metadata.json
