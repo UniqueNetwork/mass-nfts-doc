@@ -10,7 +10,7 @@ const inputDataForCreateCollection = {
   mode: 'Nft',
   name: config.collection.name,                 // Collection name
   description: config.collection.description,   // Collection description
-  tokenPrefix: config.collection.tokenPrefix,   // Token prefix
+  tokenPrefix: config.collection.symbol,   // Token short prefix, e.g. PUNK
   metaUpdatePermission: 'ItemOwner',
   readOnly: true,
   schema: {
@@ -86,7 +86,13 @@ async function createCollection() {
             ...inputDataForCreateCollection,
             address: signer.address
           },
-      );
+      ).catch(e => {
+        if (e.message.includes('Inability to pay some fees')) {
+          throwError('account balance low');
+        } else {
+          throwError(e.message);
+        }
+      });
   console.log('🚀 Creating collection... done!');
   console.log(`❗️❗️❗️ add to "config.js" collectionId: ${collectionId}`);
 }

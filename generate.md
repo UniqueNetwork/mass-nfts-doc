@@ -8,16 +8,16 @@ This tutorial is for those who TODO хочет понять как из кусо
 
 This guide is perfect for beginners who don't have extensive programming knowledge. However, having some familiarity with using the terminal will be useful.
 
-By the completion of this tutorial, you will have a clear understanding of how to use scripts to generate images and NFT metadata and mint vast collections, illustrated through the example of the Sqrt Heads collection.
+By the completion of this tutorial, you will have a clear understanding of how to use scripts to generate images and NFT metadata and mint vast collections, illustrated through the example of the Square Heads collection.
 
-<image src="./docs/generate-intro.png"></iamge>
+<image src="./docs/intro-generate.png"></iamge>
 
 
-## ⚙️ Setup environment
+## ⚙️ Step 1: Setup environment
 
 To get started, we'll need node.js, git, and Visual Studio Code installed on your computer. If you haven't worked with git, node, and npm before, we recommend reading our [brief guide](./setup.md) to properly configure your environment.
 
-### Download the project
+### 1.1 Download the project
 
 You may do it in two ways.
 
@@ -32,7 +32,7 @@ git clone git@github.com:UniqueNetwork/mass-nfts-doc.git
 
 After downloading the project, open it in Visual Studio Code. Click on `"File"` and select `"Open Folder"`. Then, choose the folder where the project was downloaded.
 
-### Install dependencies
+### 1.2 Install dependencies
 
 In Visual Studio Code, access the built-in terminal by clicking on `"Terminal"` and then selecting `"New Terminal"`. Execute the following command:
 
@@ -48,15 +48,13 @@ Congratulations! You're all set now. After following the previous steps, your pr
 
 <image src="./docs/setup-finish.png" width=600></image>
 
-## 🖼 Design image parts
+## 🖼 Step-2: Подготовьте изображения
 
-<image src="./docs/combine.png" width=600></image>
+<image src="./docs/combine.png"></image>
+
+### 1.1 Design image parts
 
 The image parts should generally include some combinable parts with transparent background. Store them in `generate` folder. Для этого примера мы уже положили некоторое количество изображений, feel free to use them, or замените их на свои.
-
-If you want to set a cover for a collection, then save the cover file in images folder. Store the cover file name in the coverFileName property in the `config.js` file. If you do not need to create a cover, then assign an empty string to coverFileName.
-
-Additionally, place an image named `cover.png` in the `generate` folder, which will serve as the cover image for the collection.
 
 > 💡 Убедитесь что ваши изображения соответствуют следующему:
 >
@@ -65,34 +63,45 @@ Additionally, place an image named `cover.png` in the `generate` folder, which w
 > 3. Изображения спозиционированы так, что при наложении они образуют цельное изображение
 > 4. Названия изображений должны быть вида {attribute-name}{index}.png, например eye1.png, eye2.png
 
+### 1.2 Set collection cover
 
-## Describe NFT attributes
+Place an image named `cover.png` in the `generate` folder, which will serve as the cover image for the collection. Мы уже положили cover оставьте его или замените на свой.
+
+<image src="./docs/cover.png"></image>
+
+## 👨‍🎨 Step-3: Describe NFT attributes
+
+### 3.1 Encode attributes
 
 Generally, combinable parts produce NFT traits. For example, if the `eye2.png` image is used to generate the NFT image, it will have `joy` trait. 
 
-Также важно продумать рарити для свойств. Например, мы можем хотеть чтобы `head2.png` встречалась в среднем у 10% токенов. А трейт jewelry вообще был только у 20% процентов нфт, при этом `jewelry1.png` в 5%, а в оставшихся 15% `jewelry2.png`.
+Также важно продумать рарити для свойств. Например, мы хотим чтобы head был у каждого токена, но `head2.png` был редким и встречалась в среднем у 10% токенов. А трейт jewelry вообще был только у 20% процентов нфт, при этом `jewelry1.png` в 5%, а в оставшихся 15% `jewelry2.png`.
 
-We будем исопльзовать гугл таблицы для заполнения свойств. Here is how to code this:
-
-https://docs.google.com/spreadsheets/d/1BkBtTPcy_lvP1X23qdBQ13qQMVwirS4ZjBApp3sLbVU/edit#gid=0
+We будем исопльзовать [гугл таблицы](https://docs.google.com/spreadsheets/d/1BkBtTPcy_lvP1X23qdBQ13qQMVwirS4ZjBApp3sLbVU/edit#gid=0) для заполнения свойств. Here is how to code this:
 
 <image src="./docs/describe-attributes.png"></image>
 
-В колонке `name` перечислите все возможные атрибуты закодированные в изображении.
+В колонке `Attribute name` перечислите все возможные атрибуты закодированные в изображениях добавляенных на шаге 1.1.
 
 Важно:
 
 1. Название аттрибутов должно совпадать с названием изображений.
-2. Порядок аттрибутов важен. Например, если `head` это базовое изображение на которое будут накладываться все остальные, оно должно стоять первым в списке
+2. Порядок аттрибутов важен. Например, `head` это базовое изображение на которое накладываются все остальные, поэтому оно должно идти в списке первым. Глаза, рты и прически накладываются сверху на голову, и так как они не пересекаются друг с другом их можно расположить в произвольном порядке. Если бы у наших токенов были бы аксесуары, например очки которые накладываются поверх глаз, они должны обязательно стоять в списке ниже. В ином случае мы могли бы получим изображения, в которых глаза наложены поверх очков.
 
-В колонке `attribute exist` укажите процентную вероятность, с которой данное свойство будет присутствовать. Например, `head`, `eye` и `mouth` обязательные свойства, вероятность их наличия установлена в 100. `hair` будет встречаться только у 70% токенов, а `jewelry` только у 20%.
+<image src="./docs/image-attribute-mapping.png"></image>
+
+В колонке `Attribute exists 1-100% of tokens` укажите процентную вероятность, с которой данное свойство будет присутствовать. Например, `head`, `eye` и `mouth` обязательные свойства, вероятность их наличия установлена в 100. `hair` будет встречаться только у 70% токенов, а `jewelry` только у 20%.
 
 В последующих колонках перечислите названия свойств и вероятность их появления среди токенов.
 
 Важно:
 
-1. Порядок перечисления свойств важен и должен соответствовать порядковому номеру соответствующего изображения. Например `jewelry1.png` соответствует аттрибуты `gold`, а `jewelry2.png` – `silver`, поэтому порядок в таблице должерн быть именно таким – gold, silver.
-2. Укажите вероятность выпадение свойства для каждого отдельного НФТ. Например, для `gold` установлена вероятность выпадения `5%`, а для silver `15%`. Итоговые значения будут выглядеть так: `gold%5`, `silver%15`. Суммарная вероятность установленная для `values` не должна привышать значение установленной в `attribute exist` колонке.
+1. Порядок перечисления свойств важен и должен соответствовать порядковому номеру соответствующего изображения. Например `hair1.png` соответствует аттрибуты `bush`, а `hair2.png` – `messy`, `hair3.png` – `green punk`. Поэтому порядок в таблице должен быть именно таким – bush, messy, green punk.
+2. Укажите вероятность выпадение свойства для каждого отдельного НФТ. Например, для `gold` установлена вероятность выпадения `5%`, а для silver `15%`. Итоговые значения будут выглядеть так: `gold%5`, `silver%15`. Суммарная вероятность установленная для `Values and rarity percentage of each` должна равняться установленной в `Attribute exists 1-100% of tokens` колонке.
+
+<image src="./docs/chances.png"></image>
+
+
 
 Export table to csv format by clicking on `File - Download - Comma Separated Values (.csv)`
 
@@ -100,13 +109,17 @@ Export table to csv format by clicking on `File - Download - Comma Separated Val
 
 > ✏️ Rename the exported file to `attributes.csv` and save it in the `generate` folder near the images parts.
 
-### Set the collection metadata
+### 3.2 Set the collection metadata
 
-> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols), and `tokenPrefix` (max 4 symbold).
+<image src="./docs/collection-metadata.png"></image>
+
+> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols), and `symbol` (max 4 symbols).
 >
 > If you want to make nesting available for your collection, also set the `nesting` property. [Read more about nesting](https://docs.unique.network/networks/nesting.html).
 
-## ⛓ Prepare Substrate Address with Seed
+## ⛓ Step-4: Prepare Substrate Account
+
+### 4.1 Generate address and seed phrase
 
 To create the collection and tokens, you will need an address with balance. If you don't have account yet you may create it with [Polkadot{.js} extension for Chrome](https://polkadot.js.org/extension/).
 
@@ -121,7 +134,7 @@ To create the collection and tokens, you will need an address with balance. If y
 > 
 > ❗️ Do not commit your secrets, such as `ownerSeed`, to version control! We have added `config.js` to the `.gitignore` file for this purpose.
 
-### Get some tokens
+### 4.2 Get some tokens
 
 For this guide, we are using Opal network, and you can obtain OPL tokens for free by using [Telegram faucet bot](https://t.me/unique2faucet_opal_bot). You will have to provide your address (not a mnemonic phrase!). Click on the circle icon next to your account in the Polkadot extension to copy it.
 
@@ -135,19 +148,26 @@ For this guide, we are using Opal network, and you can obtain OPL tokens for fre
 
 Теперь все готово для создания коллекции и токенов
 
-## 💎 Create Collection and NFTs
+## 💎 Step-5: Create Collection and NFTs
 
-### Step 1: Generate images and metadata
+### 5.1 Generate images and metadata
+
+Open the VS Code terminal как мы делали на шаге 1.2 and execute the following command:
 
 ```sh
 node 0-generate-nfts.js
 ```
 
-### Step 2: Upload images to IPFS
+Изображения в папке data будут заменены на случайно сгенерированные. Проверьте что изображения сгенерированы правильно. 
+
+Так же в папку data будет добавлен файл nfts.csv с перечисленными свойствами будущих токенов. Проверьте что сгенерированные изображения соответствуют описанию. Для удобство вы можете загрузить файл в гугл таблицы. Для этого выберите File - Import и загрузите nfts.csv. 
+
+Каждая строка в таблице должна соответствовать сгенерированному изображению с тем же порядковым номером.
+<image src="./docs/generated.png"></image>
+
+### 5.2 Upload images to IPFS
 
 In simple terms, the Inter-Planetary File System (IPFS) is a distributed file storage protocol that enables a network of computers to store any kind of data in a reliable and unchangeable manner.
-
-Open the VS Code terminal and execute the following command:
 
 ```sh
 node 1-upload-images.js
@@ -161,9 +181,9 @@ This script will pack all the images into a zip archive and save it as data/arch
 
 > ✏️ In the `config.js` file, fill in the `fileUrl` set provided link. 
 
-### Step 3: Create a collection
+### 5.3 Create a collection
 
-We have set the collection metadata in the previous steps. Double-check that the name, description, tokenPrefix, and attributes fields are filled in `config.js`. Afterward, execute the script.
+We have set the collection metadata in the previous steps. Double-check that the name, description, symbol, and attributes fields are filled in `config.js`. Afterward, execute the script.
 
 ```sh
 node 2-create-collection.js
@@ -181,7 +201,7 @@ After a short period of time, you will see the result of executing the command:
 Your collection has been created, and you can check it on your [wallet](https://wallet.unique.network/) or on [uniquescan.io](https://uniquescan.io/). Now your collection doesn't have any NFTs yet, so let's create some.
 
 
-### Step 4: Create NFTs
+### 5.4 Create NFTs
 
 We have set the token metadata in the previous steps in the nfts.csv file, check again if it exists. After that, execute the following script.
 
