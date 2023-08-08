@@ -52,7 +52,7 @@ Congratulations! You're all set now. After following the previous steps, your pr
 
 <image src="./docs/combine.png"></image>
 
-### 1.1 Design image parts
+### 2.1 Design image parts
 
 The image parts should generally include some combinable parts with transparent background. Store them in `generate` folder. For this example, we have already provided a certain number of images. Feel free to use them or replace them with your own.
 
@@ -63,7 +63,7 @@ The image parts should generally include some combinable parts with transparent 
 > 3. The images are positioned in a way that they form a cohesive image when overlaid.
 > 4. The image filenames should follow the format {attribute-name}{index}.png, for example, eye1.png, eye2.png.
 
-### 1.2 Set collection cover
+### 2.2 Set collection cover
 
 Place an image named `cover.png` in the `generate` folder, which will serve as the cover image for the collection. We have already provided a cover. You can either keep it or replace it with your own.
 
@@ -75,7 +75,7 @@ Place an image named `cover.png` in the `generate` folder, which will serve as t
 
 Generally, combinable parts produce NFT traits. For example, if the `eye2.png` image is used to generate the NFT image, it will have `joy` trait. 
 
-It is also important to consider the rarity of attributes. For example, we want every token to have a "head" trait, but head2.png should be rare and appear on only about 10% of the tokens. As for the "jewelry" trait, it should be present in only 20% of the NFTs, with jewelry1.png appearing in 5% of them and jewelry2.png appearing in the remaining 15%.
+It is also important to consider the rarity of attributes. For example, we want every token to have a `head` trait, but `head2.png` should be rare and appear on only about 10% of the tokens. As for the `jewelry` trait, it should be present in only 20% of the NFTs, with `jewelry1.png` appearing in 5% of them and `jewelry2.png` appearing in the remaining 15%.
 
 We will use [Google Sheets](https://docs.google.com/spreadsheets/d/1BkBtTPcy_lvP1X23qdBQ13qQMVwirS4ZjBApp3sLbVU/edit#gid=0) to populate attributes. Here is how to code this:
 
@@ -83,7 +83,7 @@ We will use [Google Sheets](https://docs.google.com/spreadsheets/d/1BkBtTPcy_lvP
 
 In the `Attribute name` column, list all the possible attributes encoded in the images added in Step 1.1.
 
-Important:
+Make sure:
 
 1. The attribute names must match the names of the images.
 2. The order of attributes is crucial. For example, `head` is the base image onto which all others are overlaid, so it should be listed first. `eyes`, `mouths`, and `hair` are overlaid on top of the `head`, and since they do not intersect with each other, they can be arranged in any order. If our tokens had accessories, like glasses overlaying the eyes, they should be listed below the eyes. Otherwise, we might end up with images where the eyes are overlaid on top of the glasses.
@@ -94,7 +94,7 @@ In the `Attribute exists 1-100% of tokens` column, indicate the probability perc
 
 In the subsequent columns, list the names of attributes and their probability of occurrence among the tokens.
 
-Important:
+Make sure:
 
 1. The order of listing attributes is crucial and should correspond to the sequential number of the corresponding image. For example, `hair1.png` corresponds to the attribute `bush`, `hair2.png` corresponds to `messy`, and `hair3.png` corresponds to `green punk`. Therefore, the order in the table should be exactly as follows: `bush`, `messy`, `green punk`.
 2. Specify the probability of each attribute's occurrence for individual NFTs. For example, for `bush`, the probability of occurrence is set to `30%`, and for `messy`, it is set to 20%, `green punk` 15%, `red punk` - 5%. The final values will appear as follows: `bush%30`, `messy%20`, `green punk%15`, `red punk%5`. The cumulative probability set in the `Values and rarity percentage of each` column should match the probability set in the `Attribute exists 1-100% of tokens` column.
