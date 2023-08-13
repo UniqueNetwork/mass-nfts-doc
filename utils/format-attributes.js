@@ -32,7 +32,7 @@ function format(attribute) {
   obj.values = attribute
     .slice(2)
     .map(v => {
-      const [value, weight] = v.split('%');
+      const [value, weight] = v.split(config.weightSeparator);
       return {value, weight: weight ?? 1}
     })
     .filter(v => v.value !== '');
