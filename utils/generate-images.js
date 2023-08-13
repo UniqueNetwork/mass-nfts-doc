@@ -15,11 +15,7 @@ function getImageData(arr) {
     if (arr[i] !== '') {
       const imageIdx = attributes[i].values.findIndex((v) => v === arr[i] || v.value === arr[i]) + 1;
       if(imageIdx === 0) throw Error('imageIdx cannot be null');
-      const img = {
-        src: `${config.generationDir}/${attributes[i].name}${imageIdx}.png`,
-        offsetX: (i == 0) ? 0 : -config.imageWidth,
-        offsetY: 0,
-      };
+      const img = `${config.generationDir}/${attributes[i].name}${imageIdx}.png`
       images.push(img);
     }
   }
