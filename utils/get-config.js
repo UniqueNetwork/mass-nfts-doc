@@ -4,8 +4,8 @@ const path = require('path');
 
 function getConfig() {
   console.log(__dirname);
-  if (fs.existsSync(path.resolve(__dirname, '../metadata.json'))) {
-    config.collection.attributes = require('../metadata.json');
+  if (fs.existsSync(path.resolve(__dirname, '../data/metadata.json'))) {
+    config.collection.attributes = require('../data/metadata.json');
   };
   return config;
 }
