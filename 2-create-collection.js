@@ -18,7 +18,14 @@ const inputDataForCreateCollection = {
       urlInfix: config.coverFileName    // Collection cover
     },
     image: {
-      urlTemplate: `${config.collection.fileUrl}/{infix}` // Template for NFTs image search
+      // Template for NFTs image search
+      urlTemplate: `${config.collection.fileUrl}/{infix}`
+    },
+    file: {
+      urlTemplate: `${config.collection.fileUrl}/{infix}`
+    },
+    coverPicture: {
+      url: `${config.collection.fileUrl}/${config.coverFileName}`
     },
     schemaName: 'unique',
     schemaVersion: '1.0.0',
