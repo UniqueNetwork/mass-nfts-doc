@@ -8,29 +8,15 @@ const config = {
 
     // Set desired collection attributes
     collection: {
+        collectionId: '', // you will get the collection id after the step 2-create-collection.js
+        fileUrl: '', // link to IPFS, you will get it after the step 1-upload-images.js
+        
         name: 'Space Animals',
         description: 'This collection is created to showcase the process of mass minting',
         symbol: 'SANI',
 
-        fileUrl: '', // link to IPFS, you will get it after the step 1-upload-images.js
-        collectionId: '', // you will get the collection id after the step 2-create-collection.js
-
-        // Each NFT token will have these properties.
-        // Feel free to set your own
-        attributes: [
-            'creature',
-            'description',
-        ],
-
-        // You can create more complex rules for each attribute
-        // set attributes as an object with the `name`, `required` and `values` properties
-        // Example:
-
-            // attributes: [
-            //     { name: 'creature', required: true, values: ['Mammal', 'Reptiles', 'Birds'] },
-            //     { name: 'description', required: false }
-            // ],
-
+        customizable: false, // set true only for base customizable collection
+        
         // To enable nesting set these properties:
         nesting: {
             tokenOwner: false,
@@ -46,6 +32,7 @@ const config = {
     tokensCSV: 'nfts.csv',
     generationDir: './generate',
     attributesCsv: 'attributes.csv',
+    nestingUrl: 'https://nesting.unique.network/common',
     imagesInParallel: require('os').cpus().length,
 }
 

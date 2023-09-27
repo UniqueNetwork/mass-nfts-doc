@@ -40,4 +40,9 @@ async function readAttributesCsv() {
   return readCSV(`${config.generationDir}/${config.attributesCsv}`, 0, 1)
 }
 
-module.exports = {readNFTsCsv, readAttributesCsv};
+async function readAttributeNamesCsv() {
+  const csv = await readCSV(`${config.dataDir}/${config.tokensCSV}`, 1, 0)
+  return csv[0];
+}
+
+module.exports = {readNFTsCsv, readAttributesCsv, readAttributeNamesCsv};

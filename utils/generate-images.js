@@ -43,7 +43,7 @@ async function _generateImages() {
 
 async function generateImages() {
   console.log('🖼 generating images...');
-  config = getConfig();
+  config = await getConfig();
   attributes = config.collection.attributes;
   nfts = await readNFTsCsv(path.resolve(config.dataDir, 'nfts.csv'));
   await _generateImages();
