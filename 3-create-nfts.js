@@ -32,7 +32,7 @@ async function main() {
     .fill({})
     .map((el, i) => {
       const n = i + 1;
-      const image = config.collection.customizable
+      const image = config.collection.customizableUrl
         ? {url: `${config.nestingUrl}/${config.network}/${config.collection.collectionId}/${n}`}
         : { urlInfix: `${config.collection.symbol.toLowerCase()}${n}.png` }
       

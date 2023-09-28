@@ -13,7 +13,7 @@ const config = {
         // It is required that all NFT image names begin with the symbol, e.g. sa1.png, sa2.png ...
         symbol: 'SA',
 
-        customizable: false, // set true only for the base customizable collection
+        customizableUrl: false, // set true only for the base customizable collection
         
         // To enable nesting set these properties:
         nesting: {
