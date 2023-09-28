@@ -34,9 +34,9 @@ async function main() {
       const n = i + 1;
       const image = config.collection.customizable
         ? {url: `${config.nestingUrl}/${config.network}/${config.collection.collectionId}/${n}`}
-        : { urlInfix: `${config.imagePrefix}${n}.png` }
+        : { urlInfix: `${config.collection.symbol.toLowerCase()}${n}.png` }
       
-      const file = { urlInfix: `${config.imagePrefix}${n}.png` }
+      const file = { urlInfix: `${config.collection.symbol.toLowerCase()}${n}.png` }
 
       const encodedAttributes = {};
       nftdata[i].forEach((el, j) => {

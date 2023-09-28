@@ -36,7 +36,7 @@ async function createZipArchive() {
         if (tokenImg) {
             zip.addLocalFile(path.resolve(
                 config.dataDir,
-                `${config.imagePrefix}${i}.png`,
+                `${config.collection.symbol.toLowerCase()}${i}.png`,
             ));
         }
     });

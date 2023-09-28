@@ -26,11 +26,20 @@
 - Удаляем все из data
 - Копируем все из accessorise в папку дату
 - устанавливаем в config
-  - imagePrefix
   - attributes
-  - name, description, tokenPrefix
+  - name, description, symbol
   - nesting
 
 # IPFS
 node 1-...
 
+
+
+
+
+
+>>>>>>>>>>>>>>>>
+
+
+1. Создаем config.js из config.example.js
+2. Заполняю ownerSeed

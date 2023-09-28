@@ -28,7 +28,7 @@ async function _generateImages() {
 
   for (let i = 0; i < nfts.length; i++) {
     const nft = nfts[i];
-    const output = `${config.dataDir}/${config.imagePrefix}${i+1}.png`;
+    const output = `${config.dataDir}/${config.collection.symbol.toLowerCase()}${i+1}.png`;
 
     const images = getImageData(nft);
 

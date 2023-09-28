@@ -3,9 +3,6 @@ const config = {
     // Set your secret mnemonic phrase. Keep it save!
     ownerSeed: '',
     
-    imagePrefix: 'cosmic_', // It is required that all NFT image names begin with prefix
-    coverFileName: 'cover.png', // Your cover should have this name. Save it in ./data folder
-
     // Set desired collection attributes
     collection: {
         collectionId: '', // you will get the collection id after the step 2-create-collection.js
@@ -13,9 +10,10 @@ const config = {
         
         name: 'Space Animals',
         description: 'This collection is created to showcase the process of mass minting',
-        symbol: 'SANI',
+        // It is required that all NFT image names begin with the symbol, e.g. sa1.png, sa2.png ...
+        symbol: 'SA',
 
-        customizable: false, // set true only for base customizable collection
+        customizable: false, // set true only for the base customizable collection
         
         // To enable nesting set these properties:
         nesting: {
@@ -23,10 +21,11 @@ const config = {
             collectionAdmin: false,    
         }
     },
-    // How many NFTs to generate
-    desiredCount: 100,
 
     // Extra configuration
+
+    desiredCount: 30, // How many NFTs to generate. Used only for 0-generate-nfts.js
+    coverFileName: 'cover.png', // Your cover should have this name. Save it in ./data folder
     numberOfTokensGeneratedAtOnce: 25,
     dataDir: './data',
     tokensCSV: 'nfts.csv',
