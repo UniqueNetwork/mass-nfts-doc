@@ -1,71 +1,79 @@
 const initializeSdk = require('./utils/initialize-sdk');
 const throwError = require('./utils/errors');
 const getConfig = require('./utils/get-config');
-const config = getConfig();
 
-
-// Basic data structure for creating a collection in Unique
-// We already set some values from `config.js`
-const inputDataForCreateCollection = {
-  mode: 'Nft',
-  name: config.collection.name,                 // Collection name
-  description: config.collection.description,   // Collection description
-  tokenPrefix: config.collection.symbol,   // Token short prefix, e.g. PUNK
-  metaUpdatePermission: 'ItemOwner',
-  readOnly: true,
-  schema: {
-    coverPicture: { 
-      urlInfix: config.coverFileName    // Collection cover
-    },
-    image: {
-      urlTemplate: `${config.collection.fileUrl}/{infix}` // Template for NFTs image search
-    },
-    schemaName: 'unique',
-    schemaVersion: '1.0.0',
-    attributesSchemaVersion: '1.0.0'
-  },
-  permissions: {
-    nesting: config.collection.nesting,
-    mintMode: true
-  },
-}
+let config;
 
 // Encoding attributes from `config.js`
 function encodeAttributes() {
-    const attributesSchema = {};
-    config.collection.attributes.forEach((attribute, i) => {
-      let { name, required, values } = attribute;
+  // Basic data structure for creating a collection in Unique
+  // We already set some values from `config.js`
+  const collectionInputData = {
+    mode: 'Nft',
+    name: config.collection.name,                 // Collection name
+    description: config.collection.description,   // Collection description
+    tokenPrefix: config.collection.symbol,   // Token short prefix, e.g. PUNK
+    metaUpdatePermission: 'ItemOwner',
+    readOnly: true,
+    schema: {
+      coverPicture: { 
+        urlInfix: config.coverFileName    // Collection cover
+      },
+      image: {
+        // Template for NFTs image search
+        urlTemplate: `${config.collection.fileUrl}/{infix}`
+      },
+      file: {
+        urlTemplate: `${config.collection.fileUrl}/{infix}`
+      },
+      coverPicture: {
+        url: `${config.collection.fileUrl}/${config.coverFileName}`
+      },
+      schemaName: 'unique',
+      schemaVersion: '1.0.0',
+      attributesSchemaVersion: '1.0.0'
+    },
+    permissions: {
+      nesting: config.collection.nesting,
+      mintMode: true
+    },
+  }
 
-      // If attribute defined as a plain string: name = attribute:
-      if(typeof attribute === 'string') {
-        name = attribute;
-      }
-      // check if attribute contains `values` field (enumerable property).
-      let enumValues;
-      if(values) {
-        enumValues = {};
-        values.forEach((value, j) => {
-          enumValues[j.toString()] = { _: value.value ?? value  };
-        });
-      }
-  
-      // basic encoding here:
-      attributesSchema[i.toString()] = {
-        name: {
-          _: name,
-        },
-        type: 'string',
-        optional: !required,
-        isArray: false,
-      };
-  
-      // add enumerable values if defined
-      if (enumValues) attributesSchema[i.toString()].enumValues = enumValues;
-    });
-    inputDataForCreateCollection.schema.attributesSchema = attributesSchema;
+  const attributesSchema = {};
+  config.collection.attributes.forEach((attribute, i) => {
+    let { name, required, values } = attribute;
+
+    // If attribute defined as a plain string: name = attribute:
+    if(typeof attribute === 'string') {
+      name = attribute;
+    }
+    // check if attribute contains `values` field (enumerable property).
+    let enumValues;
+    if(values) {
+      enumValues = {};
+      values.forEach((value, j) => {
+        enumValues[j.toString()] = { _: value.value ?? value  };
+      });
+    }
+
+    // basic encoding here:
+    attributesSchema[i.toString()] = {
+      name: {
+        _: name,
+      },
+      type: 'string',
+      optional: !required,
+      isArray: false,
+    };
+
+    // add enumerable values if defined
+    if (enumValues) attributesSchema[i.toString()].enumValues = enumValues;
+  });
+  collectionInputData.schema.attributesSchema = attributesSchema;
+  return collectionInputData;
 }
 
-async function createCollection() {
+async function createCollection(collectionInputData) {
   if(!config.collection.fileUrl) {
     throwError('config.js - fileUrl property does not set. Did you forget to save the file?');
   }
@@ -83,7 +91,7 @@ async function createCollection() {
   const { parsed: { collectionId }} =
       await sdk.collection.create(
           {
-            ...inputDataForCreateCollection,
+            ...collectionInputData,
             address: signer.address
           },
       ).catch(e => {
@@ -98,8 +106,9 @@ async function createCollection() {
 }
 
 async function main() {
-  encodeAttributes();
-  await createCollection();
+  config = await getConfig();
+  const collectionInputData = encodeAttributes();
+  await createCollection(collectionInputData);
 }
 
 main().catch(console.error);

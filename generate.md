@@ -10,7 +10,7 @@ This guide is perfect for beginners who don't have extensive programming knowled
 
 By completing this tutorial, you will have a clear understanding of how to use scripts to generate images and NFT metadata and mint vast collections, illustrated through the example of the [Square Heads collection](https://unqnft.io/unique/collection/282?filterState=).
 
-<image src="./docs/intro-generate.png"></iamge>
+<image src="./docs/intro-generate.png"></image>
 
 
 ## ⚙️ Step 1: Setup environment

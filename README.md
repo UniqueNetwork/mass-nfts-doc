@@ -47,7 +47,7 @@ Congratulations! You're all set now. After following the previous steps, your pr
 
 ## 🖼 Step-2: Prepare your images
 
-Place your images in the `data` folder. The image names should consist of a `prefix` and a sequential number that determines the token's position in the collection. For this tutorial, the token prefix is `cosmic_`. Therefore, `cosmic_1.png` will be the first token in the collection, `cosmic_2.png` will be the second token, and so on.
+Place your images in the `data` folder. The image names should consist of a `symbol` and a sequential number that determines the token's position in the collection. For this tutorial, the collection symbol is `SA`. Therefore, `sa1.png` will be the first token in the collection, `sa2.png` will be the second token, and so on.
 
 Additionally, place an image named `cover.png` in the data folder, which will serve as the cover image for the collection.
 
@@ -55,53 +55,15 @@ We have already prepared ten images stored in the `data` folder. Feel free to us
 
 <image src="./docs/images.png"></image>
 
-> ✏️  In the `config.js` file, specify the prefix for your collection by setting the value of the `imagePrefix` property.
+> ✏️  In the `config.js` file, specify the prefix for your collection by setting the value of the `symbol` property (max 4 symbols).
 
 ## 📇 Step-3: Prepare metadata
 
 Metadata is basic information that describes NFT or collection, such as its name, description, token prefix, and other relevant details.
 
-### 3.1 Set the collection metadata
-
-> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols), and `symbol` (max 4 symbols).
+> ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols).
 >
 > If you want to make nesting available for your collection, set the `nesting` property. [Read more about nesting](https://docs.unique.network/networks/nesting.html).
-
-After the creation of the collection metadata file, we need to create metadata of our NFTs
-
-### 3.2 Set the metadata for NFTs
-
-The property `attributes` in the `config.js` file should describe traits of your NFT collection. In the simplest case, properties can be defined as a list. Each element represents the name of the property.
-
-For this tutorial, the properties are predefined as follows:
-```sh
-attributes: [
-    'creature',
-    'description',
-],
-```
-> <font size=1> Each token in the collection will have two properties: creature and description. Each field is mandatory to fill and can contain arbitrary data. </font>
-
-
-<details>
-  <summary>You can also specify more complex rules for properties. Find out how...</summary>
-
-  Rather than coding the properties as strings, use objects with the following properties:
-
-  - `name`: REQUIRED field, represents the property's name.
-  - `required`: OPTIONAL field. Set it to `false` if the property can be skipped for the NFT. The default value is `true`.
-  - `values`: OPTIONAL field. It is an array of possible values. If specified, the property can only have a value that is present in the list.
-
-  **Example**
-  ```js
-  attributes: [
-      { name: 'creature', required: true, values: ['Mammal', 'Reptiles', 'Birds'] },
-      { name: 'description', required: false }
-  ],
-  ```
-  > <font size=1> `creature` is a required enumerable property. Each token must have one of the following values for this property: `Mammal`, `Reptiles`, or `Birds`. On the other hand, the value for the `description` property is not specified, so it can be filled with arbitrary data. Additionally, the `description` property can be omitted entirely since its required field is set to false. </font>
-
-</details>
 
 ## 👨‍🎨 Step-4: Describe the properties of NFTs
 

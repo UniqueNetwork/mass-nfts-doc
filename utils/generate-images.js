@@ -15,11 +15,7 @@ function getImageData(arr) {
     if (arr[i] !== '') {
       const imageIdx = attributes[i].values.findIndex((v) => v === arr[i] || v.value === arr[i]) + 1;
       if(imageIdx === 0) throw Error('imageIdx cannot be null');
-      const img = {
-        src: `${config.generationDir}/${attributes[i].name}${imageIdx}.png`,
-        offsetX: (i == 0) ? 0 : -config.imageWidth,
-        offsetY: 0,
-      };
+      const img = `${config.generationDir}/${attributes[i].name}${imageIdx}.png`
       images.push(img);
     }
   }
@@ -32,7 +28,7 @@ async function _generateImages() {
 
   for (let i = 0; i < nfts.length; i++) {
     const nft = nfts[i];
-    const output = `${config.dataDir}/${config.imagePrefix}${i+1}.png`;
+    const output = `${config.dataDir}/${config.collection.symbol.toLowerCase()}${i+1}.png`;
 
     const images = getImageData(nft);
 
@@ -47,7 +43,7 @@ async function _generateImages() {
 
 async function generateImages() {
   console.log('🖼 generating images...');
-  config = getConfig();
+  config = await getConfig();
   attributes = config.collection.attributes;
   nfts = await readNFTsCsv(path.resolve(config.dataDir, 'nfts.csv'));
   await _generateImages();

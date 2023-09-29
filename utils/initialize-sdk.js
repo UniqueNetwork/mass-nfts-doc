@@ -16,8 +16,10 @@ async function initializeSdk() {
             baseUrl: config.endpoint,
             signer
         };
+
+        const sdk = new Sdk.default(clientOptions);
         return {
-            sdk: new Sdk.default(clientOptions),
+            sdk,
             signer
         };
     } catch (e) {

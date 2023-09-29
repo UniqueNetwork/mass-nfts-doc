@@ -2,11 +2,12 @@ const initializeSdk = require('./utils/initialize-sdk');
 const {readNFTsCsv} = require('./utils/read-csv');
 const throwError = require('./utils/errors');
 const getConfig = require('./utils/get-config');
-const config = getConfig();
 
 let nftdata;
 
 async function main() {
+  const config = await getConfig();
+
   nftdata = await readNFTsCsv();
   console.log('🚀 Creating NFTs...');
 
@@ -31,7 +32,12 @@ async function main() {
     .fill({})
     .map((el, i) => {
       const n = i + 1;
-      const image = { urlInfix: `${config.imagePrefix}${n}.png`};
+      const image = config.collection.customizableUrl
+        ? {url: `${config.nestingUrl}/${config.network}/${config.collection.collectionId}/${n}`}
+        : { urlInfix: `${config.collection.symbol.toLowerCase()}${n}.png` }
+      
+      const file = { urlInfix: `${config.collection.symbol.toLowerCase()}${n}.png` }
+
       const encodedAttributes = {};
       nftdata[i].forEach((el, j) => {
         if (el) {
@@ -53,6 +59,7 @@ async function main() {
       return {
         data: {
           image,
+          file,
           encodedAttributes
         }
       }
@@ -69,6 +76,9 @@ async function main() {
       address: signer.address,
       collectionId: collectionId,
       tokens: chunkData
+    }).catch(error => {
+      
+      throwError(`during NFTs minting: ${error.message}`);
     });
 
     if(error) {
@@ -84,12 +94,7 @@ async function main() {
   console.log('🚀 Creating NFTs... done!');
   console.log(`Token Ids: ${result.map(el => el.tokenId).join(', ')}`);
 
-  let network = config.endpoint.includes('opal')
-    ? 'opal'
-    : config.endpoint.includes('quartz')
-      ? 'quartz'
-      : 'unique'
-  console.log(`\n🔗 You can find your collection and tokens here: https://uniquescan.io/${network}/collections/${config.collection.collectionId}`); 
+  console.log(`\n🔗 You can find your collection and tokens here: https://uniquescan.io/${config.network}/collections/${config.collection.collectionId}`); 
 }
 
 main().catch(console.error).finally(() => process.exit());
