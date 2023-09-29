@@ -23,7 +23,7 @@ const config = {
     },
 
     // Extra configuration
-
+    weightSeparator: '%',
     desiredCount: 30, // How many NFTs to generate. Used only for 0-generate-nfts.js
     coverFileName: 'cover.png', // Your cover should have this name. Save it in ./data folder
     numberOfTokensGeneratedAtOnce: 25,
