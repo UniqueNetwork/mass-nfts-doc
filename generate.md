@@ -56,6 +56,7 @@ Congratulations! You're all set now. After following the previous steps, your pr
 
 The image parts should generally include some combinable details with transparent backgrounds. Store them in the `generate` folder. For this example, we have already provided a certain number of images. Feel free to use them or replace them with your own.
 
+> [!TIP]
 > 💡 Please ensure that your images meet the following criteria:
 >
 > 1. All images have the same length and width.
@@ -94,10 +95,11 @@ In the `Attribute exists 1-100% of tokens` column, indicate the probability perc
 
 In the subsequent columns, list the names of attributes and their probability of occurrence among the tokens.
 
-Make sure:
-
-1. The order of listing attributes is crucial and should correspond to the sequential number of the corresponding image. For example, `hair1.png` corresponds to the attribute `bush`, `hair2.png` corresponds to `messy`, and `hair3.png` corresponds to `green punk`. Therefore, the order in the table should be exactly as follows: `bush`, `messy`, `green punk`.
-2. Specify the probability of each attribute's occurrence for individual NFTs. For example, for `bush`, the likelihood of occurrence is set to `30%`, and for `messy`, it is set to 20%, `green punk` 15%, `red punk` - 5%. The final values will appear as follows: `bush%30`, `messy%20`, `green punk%15`, `red punk%5`. The cumulative probability set in the `Values and rarity percentage of each` column should match the probability set in the `Attribute exists 1-100% of tokens` column.
+> [!IMPORTANT]  
+> 
+> Make sure:
+> 1. The order of listing attributes is crucial and should correspond to the sequential number of the corresponding image. For example, `hair1.png` corresponds to the attribute `bush`, `hair2.png` corresponds to `messy`, and `hair3.png` corresponds to `green punk`. Therefore, the order in the table should be exactly as follows: `bush`, `messy`, `green punk`.
+>2. Specify the probability of each attribute's occurrence for individual NFTs. For example, for `bush`, the likelihood of occurrence is set to `30%`, and for `messy`, it is set to 20%, `green punk` 15%, `red punk` - 5%. The final values will appear as follows: `bush%30`, `messy%20`, `green punk%15`, `red punk%5`. The cumulative probability set in the `Values and rarity percentage of each` column should match the probability set in the `Attribute exists 1-100% of tokens` column.
 
 <image src="./docs/chances.png"></image>
 
@@ -105,11 +107,13 @@ Export the table to CSV format by clicking on `File - Download - Comma Separated
 
 <image src="./docs/export-csv.png"></image>
 
+> [!IMPORTANT]
 > ✏️ Rename the exported file to `attributes.csv` and save it in the `generate` folder near the images' parts.
 ### 3.2 Set the collection metadata
 
 <image src="./docs/collection-metadata.png"></image>
 
+> [!IMPORTANT]
 > ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols), and `symbol` (max 4 symbols).
 >
 > If you want to make nesting available for your collection, set the `nesting` property. [Read more about nesting](https://docs.unique.network/networks/nesting.html).
@@ -127,15 +131,17 @@ You will need an address with a balance to create the collection and tokens. If 
 
 <image src="./docs/extension.png"></image>
 
+> [!IMPORTANT]
 > ✏️ In the `config.js` file, fill in the `ownerSeed` field.
-> 
-> ❗️ Do not commit your secrets, such as `ownerSeed`, to version control! We have added `config.js` to the `.gitignore` file for this purpose.
+
+> [!WARNING]  
+> Do not commit your secrets, such as `ownerSeed`, to version control! We have added `config.js` to the `.gitignore` file for this purpose.
 
 ### 4.2 Get some tokens
 
 For this guide, we are using Opal Network, and you can obtain OPL tokens for free by using [Telegram faucet bot](https://t.me/unique2faucet_opal_bot). You will have to provide your address (not a mnemonic phrase!). Click on the circle icon next to your account in the Polkadot extension to copy it.
 
-
+> [!TIP]
 > 💡 If you are ready to mint tokens on the mainnet (Quartz or Unique), change the endpoint variable in the config.js file. Set it to `https://rest.unique.network/quartz/v1` for Quartz or `https://rest.unique.network/unique/v1` for Unique.
 >
 > - Quartz Network tokens (QTZ) are available on [MEXC](https://www.mexc.com/ru-RU/exchange/QTZ_USDT?_from=search)
@@ -149,6 +155,7 @@ Now everything is ready to create a collection and tokens.
 
 ### 5.1 Generate images and metadata
 
+> [!IMPORTANT]
 > ✏️ Set the desired number of generated NFTs in the config.js file and fill in the `desiredCount` property.
 
 Open the VS Code terminal, as we did in step 1.2, and run the following command:
@@ -179,6 +186,7 @@ After a short time, you will see the result of executing the command:
 
 This script will pack all the images into a zip archive and save it as data/archive.zip. Then it will upload it to IPFS. Ensure all your files are successfully uploaded by visiting the link provided in the console output.
 
+> [!IMPORTANT]
 > ✏️ In the `config.js` file, fill in the `fileUrl` set provided link. 
 
 ### 5.3 Create a collection
@@ -196,6 +204,7 @@ After a short time, you will see the result of executing the command:
 ❗️❗️❗️ add to "config.js" collectionId: 2015
 ```
 
+> [!IMPORTANT]
 > ✏️ In the `config.js` file, fill in the `collectionId` set provided value.
 
 Your collection has been created, and you can check it on your [wallet](https://wallet.unique.network/) or on [uniquescan.io](https://uniquescan.io/). Your collection doesn't have any NFTs yet, so let's create some.
