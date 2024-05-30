@@ -5,6 +5,11 @@ const getConfig = require('./utils/get-config');
 
 let nftdata;
 
+/**
+ * Main function to create NFTs based on data from a CSV file.
+ * 
+ * @returns {Promise<void>} A promise that resolves when all NFTs are created.
+ */
 async function main() {
   const config = await getConfig();
 
@@ -16,7 +21,7 @@ async function main() {
     throwError('collectionId is not set in "config.js". Did you forget to save the file?')
   }
 
-  const { sdk, signer } = await initializeSdk();
+  const { sdk, account } = await initializeSdk();
 
   // If user already minted some NFTs than continue starting from the last minted id
   const { tokenId: lastTokenId } = await sdk.collection.lastTokenId({ collectionId });
@@ -73,7 +78,7 @@ async function main() {
     if (chunkNumber > nftdata.length / config.numberOfTokensGeneratedAtOnce) throw new Error('unexpected value chunkNumber');
     const chunkData = data.slice(chunkNumber * config.numberOfTokensGeneratedAtOnce, (chunkNumber + 1) * config.numberOfTokensGeneratedAtOnce);
     const { parsed, error } = await sdk.token.createMultiple.submitWaitResult({
-      address: signer.address,
+      address: account.address,
       collectionId: collectionId,
       tokens: chunkData
     }).catch(error => {
@@ -88,7 +93,7 @@ async function main() {
     result = [ ...result, ...parsed];
     await new Promise(resolve => setTimeout(resolve, 1000));
     chunkNumber++;
-    console.log(`🚚 successfully created ${chunkNumber} part of NFT's`);
+    console.log(`🚚 successfully created ${chunkNumber} part`);
   }
 
   console.log('🚀 Creating NFTs... done!');
