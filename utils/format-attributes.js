@@ -1,8 +1,13 @@
-const {readAttributesCsv} = require('./read-csv');
+const { readAttributesCsv } = require('./read-csv');
 const config = require('../config');
 const throwError = require('./errors');
 const fs = require('fs');
 
+/**
+ * Formats and tests attributes from the CSV, then saves them as JSON.
+ * 
+ * @returns {Promise<Array>} A promise that resolves to the formatted attributes.
+ */
 async function formatAttributes() {
   try {
     const ATTRIBUTES_PATH = './data/metadata.json';
@@ -24,6 +29,12 @@ async function formatAttributes() {
   }
 }
 
+/**
+ * Formats a single attribute.
+ * 
+ * @param {Array} attribute - The attribute array from the CSV.
+ * @returns {Object} The formatted attribute object.
+ */
 function format(attribute) {
   const obj = {};
   obj.name = attribute[0];
@@ -33,30 +44,33 @@ function format(attribute) {
     .slice(2)
     .map(v => {
       const [value, weight] = v.split(config.weightSeparator);
-      return {value, weight: weight ?? 1}
+      return { value, weight: weight ?? 1 };
     })
     .filter(v => v.value !== '');
   return obj;
 }
 
+/**
+ * Tests the validity of a formatted attribute.
+ * 
+ * @param {Object} attribute - The formatted attribute object.
+ * @throws Will throw an error if any attribute validation fails.
+ */
 function testAttribute(attribute) {
-  if (!attribute.name)
-    throwError('attribute should have name');
-  if (typeof attribute.required === 'undefined')
-    throwError(`attribute should have required value: ${attribute.name}`);
-  if (attribute.chance > 100 || attribute.chance < 0)
-    throwError(`attribute should be between 0 and 100: ${attribute.name}`);
-  
+  if (!attribute.name) throwError('attribute should have name');
+  if (typeof attribute.required === 'undefined') throwError(`attribute should have required value: ${attribute.name}`);
+  if (attribute.chance > 100 || attribute.chance < 0) throwError(`attribute should be between 0 and 100: ${attribute.name}`);
+
   const totalWeight = attribute.values.reduce((acc, curr) => {
-    if (+curr.weight === 0) throwError(`weight 0: ${attribute.name}`)
-    return acc + +curr.weight
+    if (+curr.weight === 0) throwError(`weight 0: ${attribute.name}`);
+    return acc + +curr.weight;
   }, 0);
 
-  if (totalWeight > 100) throwError(`total weight cannot be gt 100: ${attribute.name}`)
+  if (totalWeight > 100) throwError(`total weight cannot be greater than 100: ${attribute.name}`);
 
   if (totalWeight !== attribute.chance) {
     if (attribute.chance !== 100) {
-      throwError(`if chance < 100 than it should be equal total values weight: ${attribute.name}`);
+      throwError(`if chance < 100 then it should be equal to total values weight: ${attribute.name}`);
     }
   }
 }

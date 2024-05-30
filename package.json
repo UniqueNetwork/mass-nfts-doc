@@ -10,12 +10,13 @@
   "author": "",
   "license": "Apache 2.0",
   "dependencies": {
-    "@unique-nft/accounts": "^0.3.6",
-    "@unique-nft/sdk": "^0.2.17",
+    "@unique-nft/sdk": "^0.7.5",
+    "@unique-nft/sr25519": "^0.0.2",
     "adm-zip": "^0.5.10",
     "bignumber.js": "^9.1.1",
     "convert-array-to-csv": "^2.0.0",
     "csv-reader": "^1.0.12",
+    "i": "^0.3.7",
     "jimp": "^0.22.10",
     "threads": "^1.7.0"
   }

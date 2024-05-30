@@ -4,7 +4,8 @@ This tutorial is for those who already have token images and want to create a la
 
 This guide is perfect for beginners who don't have extensive programming knowledge. However, having some familiarity with using the console will be helpful.
 
-> 💡 If you want to create a generative NFT collection, make use of [this guide](./generate.md).
+> [!TIP]
+> If you want to create a generative NFT collection, make use of [this guide](./generate.md).
 
 By completing of this tutorial, you will have a clear understanding of how to use scripts to mint vast collections, illustrated through the example of the [Space Animals collection](https://uniquescan.io/opal/collections/1883).
 
@@ -55,15 +56,17 @@ We have already prepared ten images stored in the `data` folder. Feel free to us
 
 <image src="./docs/images.png"></image>
 
-> ✏️  In the `config.js` file, specify the prefix for your collection by setting the value of the `symbol` property (max 4 symbols).
+> [!IMPORTANT]
+> ✏️ In the `config.js` file, specify the prefix for your collection by setting the value of the `symbol` property (max 4 symbols).
 
 ## 📇 Step-3: Prepare metadata
 
 Metadata is basic information that describes NFT or collection, such as its name, description, token prefix, and other relevant details.
 
+> [!IMPORTANT]
 > ✏️ In the `config.js` file, fill in the fields `collectionName` (max 64 symbols), `collectionDescription` (max 256 symbols).
 >
-> If you want to make nesting available for your collection, set the `nesting` property. [Read more about nesting](https://docs.unique.network/networks/nesting.html).
+> If you want to make nesting available for your collection, set the `nesting` property. [Read more about nesting](https://docs.unique.network/build/sdk/examples-nesting.html).
 
 ## 👨‍🎨 Step-4: Describe the properties of NFTs
 
@@ -88,6 +91,7 @@ Complete the table by listing all the properties of your collection in the heade
 
 > <font size=1> In the image above, the data is filled in to create 10 tokens with two properties, `creature` and `description`. </font>
 
+> [!IMPORTANT]
 > ✏️ Rename the exported file to `nfts.csv` and save it in the `data` folder.
 
 We have already included a file named `nfts.csv` with data for 10 NFTs. You can use this file as it is or add more tokens and properties.
@@ -107,16 +111,18 @@ You will need an address with a balance to create the collection and tokens. If 
 
 <image src="./docs/extension.png"></image>
 
+> [!IMPORTANT]
 > ✏️ In the `config.js` file, fill in the `ownerSeed` field.
-> 
+
+> [!CAUTION]
 > ❗️ Do not commit your secrets, such as `ownerSeed`, to version control! We have added `config.js` to the `.gitignore` file for this purpose.
 
 ### 5.2 Get some tokens
 
 For this guide, we are using Opal Network, and you can obtain OPL tokens for free by using [Telegram faucet bot](https://t.me/unique2faucet_opal_bot). You will have to provide your address (not a mnemonic phrase!). Click on the circle icon next to your account in the Polkadot extension to copy it.
 
-
-> 💡 If you are ready to mint tokens on the mainnet (Quartz or Unique), make sure to change the endpoint variable in the config.js file. Set it to `https://rest.unique.network/quartz/v1` for Quartz or `https://rest.unique.network/unique/v1` for Unique.
+> [!TIP]
+> If you are ready to mint tokens on the mainnet (Quartz or Unique), make sure to change the endpoint variable in the config.js file. Set it to `https://rest.unique.network/quartz/v1` for Quartz or `https://rest.unique.network/unique/v1` for Unique.
 >
 > - Quartz Network tokens (QTZ) are available on [MEXC](https://www.mexc.com/ru-RU/exchange/QTZ_USDT?_from=search)
 > 
@@ -141,6 +147,7 @@ After a short time, you will see the result of executing the command:
 
 This script will pack all the images into a zip archive and save it as data/archive.zip. Then it will upload it to IPFS. Ensure that all your files are successfully uploaded by visiting the link provided in the console output.
 
+> [!IMPORTANT]
 > ✏️ In the `config.js` file, fill in the `fileUrl` set provided link. 
 
 ### 6.2 Create a collection
@@ -158,6 +165,7 @@ After a short time, you will see the result of executing the command:
 ❗️❗️❗️ add to "config.js" collectionId: 1877
 ```
 
+> [!IMPORTANT]
 > ✏️ In the `config.js` file, fill in the `collectionId` set provided value.
 
 Your collection has been created, and you can check it on your [wallet](https://wallet.unique.network/) or on [uniquescan.io](https://uniquescan.io/). Your collection doesn't have any NFTs yet, so let's create some.

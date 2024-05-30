@@ -4,7 +4,11 @@ const getConfig = require('./utils/get-config');
 
 let config;
 
-// Encoding attributes from `config.js`
+/**
+ * Encodes attributes from the configuration file to create a collection input data structure.
+ * 
+ * @returns {Object} The collection input data structure.
+ */
 function encodeAttributes() {
   // Basic data structure for creating a collection in Unique
   // We already set some values from `config.js`
@@ -73,6 +77,13 @@ function encodeAttributes() {
   return collectionInputData;
 }
 
+/**
+ * Creates a new collection using the provided input data.
+ * 
+ * @param {Object} collectionInputData - The input data for creating the collection.
+ * @returns {Promise<void>} A promise that resolves when the collection is created.
+ * @throws Will throw an error if the fileUrl is not set or if there is an error creating the collection.
+ */
 async function createCollection(collectionInputData) {
   if(!config.collection.fileUrl) {
     throwError('config.js - fileUrl property does not set. Did you forget to save the file?');
@@ -87,12 +98,12 @@ async function createCollection(collectionInputData) {
 
   console.log('🚀 Creating collection...');
 
-  const {sdk, signer} = await initializeSdk();
+  const {sdk, account} = await initializeSdk();
   const { parsed: { collectionId }} =
       await sdk.collection.create(
           {
             ...collectionInputData,
-            address: signer.address
+            address: account.address
           },
       ).catch(e => {
         if (e.message.includes('Inability to pay some fees')) {
