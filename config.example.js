@@ -1,6 +1,6 @@
 const config = {
     endpoint: 'https://rest.unique.network/opal/v1',
-    // Set your secret mnemonic phrase. Keep it save!
+    // Set your secret mnemonic phrase. Keep it safe!
     ownerSeed: '',
     
     // Set desired collection attributes
